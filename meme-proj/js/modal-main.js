@@ -2,11 +2,14 @@
 
 var gCanvas;
 var gCtx;
+var gMeme;
 
 function initCanvas() {
     console.log('canvas loaded');
     gCanvas = document.querySelector('canvas');
     gCtx = gCanvas.getContext('2d');
+    gMeme = createMeme();
+    // renderMeme();
     // gCanvas.width = document.querySelector('.modalBody').clientWidth * 0.8;
     // gCanvas.height = document.querySelector('.modalBody').clientHeight * 0.7;
 }
@@ -94,22 +97,7 @@ function fitImgByRatio(canvas, imageObj) {
 };
 
 
-var gMeme = {
-    selectedImgId: 5,
-    textPrefs:
-    {
-        text: 'I never eat Falafel',
-        font: 'Arial',
-        size: 20,
-        align: 'left',
-        color: 'red',
-        shadow: false,
-    }
-}
 //////////////////////////////////////////////////////
-
-
-
 
 function createMeme() {
     var meme = {
@@ -134,12 +122,63 @@ function onWriteText(val) {
 }
 
 function onColorChang(val) {
+    gMeme.texts[0].color = val;
+    renderMeme();
+}
 
+function onFontChange(val) {
+    gMeme.texts[0].font = val;
+    renderMeme();
+}
+
+function increaseFontSize() {
+    gMeme.texts[0].size += 1;
+    renderMeme();
+}
+
+function decreaseFontSize() {
+    gMeme.texts[0].size -= 1;
+    renderMeme();
+}
+
+function alignText(val) {
+    console.log(val);
+    if (val === 'left') {
+        gMeme.texts[0].align = 'left'
+        gCtx.textAlign = 'left';
+    } 
+    if (val === 'center') {
+        gMeme.texts[0].align = 'center';
+        gCtx.textAlign = 'center';
+    } 
+    if (val === 'right') {
+        gMeme.texts[0].aling = 'right';
+        gCtx.textAlign = 'right';
+    }
 }
 
 function renderMeme() {
-    var txt = gMeme.texts[0].text;
+    var txt = gMeme.texts[0];
+    console.log(txt)
     gCtx.fillText(txt.text, 20, 20);
-    gCtx.strokeStyle = txt.color;
+    gCtx.fillStyle = txt.color;
+    gCtx.font = `${txt.size}px ${txt.font}`
+
 
 }
+function createShadow() {
+    gCtx.shadowOffsetX = 3;
+    gCtx.shadowOffsetY = 3;
+    gCtx.shadowColor = "rgba(0,0,0,0.3)";
+    gCtx.shadowBlur = 4;
+}
+
+        // function toggleShadow(){
+        //     if (gMeme.texts[0].shadow === true){
+        //         createShadow();
+        //         renderMeme()
+        //     } 
+        //     // else
+        //     // (gMeme.texts[0].shadow === false)
+        // }
+
