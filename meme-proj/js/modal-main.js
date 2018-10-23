@@ -63,6 +63,9 @@ var gMeme = {
 function onWriteText(val) {
     gCtx.font = '20pt Arial';
     gCtx.fillText(val, 20, 20);
+}
+
+function drawImg(elImg) {
     // fit and render the image on the modal canvas
     var hRatio = gCanvas.width / elImg.naturalWidth;
     var vRatio = gCanvas.height / elImg.naturalHeight;
