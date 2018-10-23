@@ -7,8 +7,8 @@ function initCanvas() {
     console.log('canvas loaded');
     gCanvas = document.querySelector('canvas');
     gCtx = gCanvas.getContext('2d');
-    gCanvas.width = document.body.offsetWidth / 2;
-    gCanvas.height = document.body.offsetHeight / 2;
+    gCanvas.width = document.querySelector('.modalBody').clientWidth * 0.95;
+    gCanvas.height = document.querySelector('.modalBody').clientHeight / 1.3;
 }
 
 function openModal() {

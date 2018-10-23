@@ -19,6 +19,7 @@
     height: fit-content;
     margin-bottom: 20px;
     width: 80vw;
+    height: 80vh;
     background-color: antiquewhite;
     cursor: auto;
 }
@@ -49,5 +50,5 @@ canvas {
 }
 
 .text-container input {
-    width: 100%;
+    width: 90%;
 }
