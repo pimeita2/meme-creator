@@ -19,3 +19,15 @@
 .wrap {
     flex-wrap: wrap;
 }
+
+.column-wrap {
+    flex-flow: column wrap;
+}
+
+.float-right {
+    float: right;
+}
+
+.float-left {
+    float: left;
+}

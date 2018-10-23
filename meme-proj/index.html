@@ -23,41 +23,45 @@
                 <option value="sarcastic" data-trans="filter-sarcastic">Sarcastic</option>
                 <option value="sad" data-trans="filter-sad">Sad</option>
                 <option value="animal" data-trans="filter-animal">Animals</option>
-                </select>
+            </select>
         </nav>
     </header>
 
     <main class="content-container flex wrap justify-between">
-        
+
 
     </main>
 
 
 
-    <div class="imgModal-wrapper flex wrap justify-center align-center">
-        <div class="modalContent">
+    <div class="imgModal-wrapper flex wrap justify-center align-center" onclick="closeModal(this)">
+        <div class="modalContent" onclick="modalContentClicked(event)">
             <div class="modalHeader">
 
             </div>
 
-            <div class="modalBody">
+            <div class="modalBody flex">
 
                 <div class="modalImg">
                     <canvas>
 
                     </canvas>
                 </div>
+                <div class="text-container">
 
-                <div class="textToolbar">
-                    <button>Del</button>
-                    <button>Col</button>
-                    <button>Font</button>
-                    <button>Shdw</button>
-                    <button>+</button>
-                    <button>-</button>
-                    <button>Al-le</button>
-                    <button>Al-ce</button>
-                    <button>Al-rt</button>
+                    <input placeholder="Enter text here" type="text">
+
+                    <div class="textToolbar">
+                        <button onclick="deleteToolbar(this.parentElement)">D</button>
+                        <button onclick="changeTextColor()">Col</button>
+                        <button>Font</button>
+                        <button>Shdw</button>
+                        <button onclick="increaseFontSize()">+</button>
+                        <button onclick="decreaseFontSize()">-</button>
+                        <button value="left" onclick="alignText(this.value)">le</button>
+                        <button value="center" onclick="alignText(this.value)">ce</button>
+                        <button value="right" onclick="alignText(this.value)">rt</button>
+                    </div>
                 </div>
             </div>
 

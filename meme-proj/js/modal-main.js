@@ -15,6 +15,14 @@ function openModal() {
     document.querySelector('.imgModal-wrapper').classList.add('open');
 }
 
+function closeModal(elModal) {
+    elModal.classList.remove('open');
+}
+
+function modalContentClicked(ev) {
+    ev.stopPropagation();
+}
+
 function drawImg(elImg) {
     var imgWidth = elImg.naturalWidth;
     var screenWidth = window.innerWidth - 20;
