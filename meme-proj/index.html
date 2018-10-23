@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="lib/fontawesome-free-5.4.1-web/css/all.min.css">
     <link rel="stylesheet" href="css/main-style.css">
     <title>Meme-Me</title>
 </head>
@@ -44,25 +45,25 @@
             <div class="modalBody flex wrap">
 
                 <div class="modalImg">
-                    <canvas>
 
-                    </canvas>
                 </div>
                 <div class="text-container flex justify-center wrap align-center">
 
                     <input class="text-line" placeholder="Enter text here" type="text" oninput="onWriteText(this.value)">
 
                     <div class="textToolbar flex justify-center align-center">
-                        <button onclick="deleteToolbar()">D</button>
-                        <input type="color" onchange="onColorChang(this.value)" />
+                        <button onclick="deleteText()" class="delete"><i class="far fa-trash-alt"></i></button>
+                        <input type="color" value="#ff0000" onchange="onColorChange(this.value)">
                         <!-- <button onclick="changeTextColor()">Col</button> -->
-                        <button onchange="onFontChange(this.value)">Font</button>
-                        <button onchange="toggleShadow(this.value)">Shdw</button>
                         <button onclick="increaseFontSize()">+</button>
                         <button onclick="decreaseFontSize()">-</button>
-                        <button value="left" onclick="alignText(this.value)">le</button>
-                        <button value="center" onclick="alignText(this.value)">ce</button>
-                        <button value="right" onclick="alignText(this.value)">rt</button>
+                        <button onchange="onFontChange(this.value)"><i class="fas fa-font"></i></button>
+                        <button onchange="toggleShadow(this.value)"><i class="fas fa-highlighter"></i></button>
+                        <div class="alignText flex">
+                            <button value="left" onclick="alignText(this.value)"><i class="fas fa-align-left"></i></button>
+                            <button value="center" onclick="alignText(this.value)"><i class="fas fa-align-center"></i></button>
+                            <button value="right" onclick="alignText(this.value)"><i class="fas fa-align-right"></i></button>
+                        </div>
                     </div>
                 </div>
             </div>

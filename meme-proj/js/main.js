@@ -26,7 +26,10 @@ function renderImgs() {
 
 function onImgClick(elImg) {
     // console.log(elImg);
+    updateCurrImg(elImg);
+    createCanvas();
     drawImg(elImg);
+    resetModalTxtInput();
     openModal();
 }
 

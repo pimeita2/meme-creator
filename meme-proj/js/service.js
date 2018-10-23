@@ -4,6 +4,7 @@ const KEY_IMGS = 'images';
 
 var gImgs;
 var gImgsFilter = 'all';
+var gCurrImg = {};
 
 function createImg(url, keyWords, ) {
     return {
@@ -28,6 +29,11 @@ function createImgs() {
         createImg('./meme-imgs/img4.jpg', ['crazy', 'sarcastic']),
         createImg('./meme-imgs/img5.jpg', ['crazy', 'sarcastic']),
     ]
+}
+
+function updateCurrImg(elImg) {
+    gCurrImg.imgElement = elImg;
+    // console.log(gCurrImg);
 }
 
 function addImg(img) {

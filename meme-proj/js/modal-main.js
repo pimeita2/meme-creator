@@ -5,13 +5,16 @@ var gCtx;
 var gMeme;
 
 function initCanvas() {
-    console.log('canvas loaded');
-    gCanvas = document.querySelector('canvas');
-    gCtx = gCanvas.getContext('2d');
+    // console.log('canvas loaded');
     gMeme = createMeme();
     // renderMeme();
-    // gCanvas.width = document.querySelector('.modalBody').clientWidth * 0.8;
-    // gCanvas.height = document.querySelector('.modalBody').clientHeight * 0.7;
+}
+
+function createCanvas() {
+    var elModalImg = document.querySelector('.modalImg');
+    elModalImg.innerHTML = `<canvas> </canvas>`;
+    gCanvas = document.querySelector('canvas');
+    gCtx = gCanvas.getContext('2d');
 }
 
 function openModal() {
@@ -22,105 +25,89 @@ function closeModal(elModal) {
     elModal.classList.remove('open');
 }
 
+function resetModalTxtInput() {
+    document.querySelector('input[type="text"]').value = '';
+}
+
 function modalContentClicked(ev) {
     ev.stopPropagation();
 }
 
 function drawImg(elImg) {
-    var imgWidth = elImg.naturalWidth;
-    var screenWidth = window.innerWidth - 20;
-    var scaleX = 1;
-    if (imgWidth > screenWidth)
-        scaleX = screenWidth / imgWidth;
-    var imgHeight = elImg.naturalHeight;
-    var screenHeight = window.innerHeight - gCanvas.offsetTop - 10;
-    var scaleY = 1;
-    if (imgHeight > screenHeight)
-        scaleY = screenHeight / imgHeight;
-    var scale = scaleY;
-    if (scaleX < scaleY)
-        scale = scaleX;
-    if (scale < 1) {
-        imgHeight = imgHeight * scale;
-        imgWidth = imgWidth * scale;
-    }
-    gCanvas.height = imgHeight;
-    gCanvas.width = imgWidth;
-    gCtx.drawImage(elImg, 0, 0, elImg.naturalWidth, elImg.naturalHeight, 0, 0, imgWidth, imgHeight);
-}
 
-
-
-function drawImg(elImg) {
-    var elModalBody = document.querySelector('.modalBody');
-    // gCanvas.style.width = '100%';
-    // gCanvas.style.height = '100%';
-
+    // var imgWidth = elImg.naturalWidth;
+    // var imgHeight = elImg.naturalHeight;
     
-    // gCtx.clearRect(0, 0, gCanvas.width, gCanvas.height);
-    console.log('offset width and height', gCanvas.offsetHeight, gCanvas.offsetWidth);
     fitImgByRatio(gCanvas, elImg);
 }
 
 function fitImgByRatio(canvas, imageObj) {
-    var imageAspectRatio = imageObj.width / imageObj.height;
-    var canvasAspectRatio = canvas.width / canvas.height;
+    var imageAspectRatio = imageObj.naturalWidth / imageObj.naturalHeight;
+	var canvasAspectRatio = canvas.width / canvas.height;
     var renderableHeight, renderableWidth, xStart, yStart;
+    
+    var imgWidth = imageObj.naturalWidth;
+    var imgHeight = imageObj.naturalHeight;
 
-    // If image's aspect ratio is less than canvas's we fit on height
-    // and place the image centrally along width
-    if (imageAspectRatio < canvasAspectRatio) {
-        renderableHeight = canvas.height;
-        renderableWidth = imageObj.width * (renderableHeight / imageObj.height);
-        xStart = (canvas.width - renderableWidth) / 2;
-        yStart = 0;
-    }
+	// If image's aspect ratio is less than canvas's we fit on height
+	// and place the image centrally along width
+	if(imageAspectRatio < canvasAspectRatio) {
+		renderableHeight = canvas.height;
+		renderableWidth = imgWidth * (renderableHeight / imgHeight);
+		xStart = (canvas.width - renderableWidth) / 2;
+		yStart = 0;
+	}
 
-    // If image's aspect ratio is greater than canvas's we fit on width
-    // and place the image centrally along height
-    else if (imageAspectRatio > canvasAspectRatio) {
-        renderableWidth = canvas.width
-        renderableHeight = imageObj.height * (renderableWidth / imageObj.width);
-        xStart = 0;
-        yStart = (canvas.height - renderableHeight) / 2;
-    }
+	// If image's aspect ratio is greater than canvas's we fit on width
+	// and place the image centrally along height
+	else if(imageAspectRatio > canvasAspectRatio) {
+		renderableWidth = canvas.width
+		renderableHeight = imgHeight * (renderableWidth / imgWidth);
+		xStart = 0;
+		yStart = (canvas.height - renderableHeight) / 2;
+	}
 
-    // Happy path - keep aspect ratio
-    else {
-        renderableHeight = canvas.height;
-        renderableWidth = canvas.width;
-        xStart = 0;
-        yStart = 0;
+	// Happy path - keep aspect ratio
+	else {
+		renderableHeight = canvas.height;
+		renderableWidth = canvas.width;
+		xStart = 0;
+		yStart = 0;
     }
-    gCtx.drawImage(imageObj, xStart, yStart, renderableWidth, renderableHeight);
+    // console.log('x start, y start', xStart, yStart);
+    gCurrImg.canvasPosX = xStart;
+    gCurrImg.canvasPosY = yStart;
+    gCurrImg.canvasEndX = renderableWidth;
+    gCurrImg.canvasEndY = renderableHeight;
+	gCtx.drawImage(imageObj, xStart, yStart, renderableWidth, renderableHeight);
 };
 
 
 //////////////////////////////////////////////////////
 
 function createMeme() {
-    var meme = {
+    return {
         selectedImgId: 5,
         texts: [
             {
                 text: '',
                 font: 'Arial',
-                size: 20,
+                size: 10,
                 align: 'left',
-                color: 'red',
+                color: '#ff0000',
                 shadow: false,
             }
         ]
     }
-    return meme;
 }
 
 function onWriteText(val) {
     gMeme.texts[0].text = val;
     renderMeme();
+    val = '';
 }
 
-function onColorChang(val) {
+function onColorChange(val) {
     gMeme.texts[0].color = val;
     renderMeme();
 }
@@ -141,7 +128,7 @@ function decreaseFontSize() {
 }
 
 function alignText(val) {
-    console.log(val);
+    // console.log(val);
     if (val === 'left') {
         gMeme.texts[0].align = 'left'
         gCtx.textAlign = 'left';
@@ -157,19 +144,26 @@ function alignText(val) {
 }
 
 function renderMeme() {
+    createCanvas();
+    fitImgByRatio(gCanvas, gCurrImg.imgElement);
     var txt = gMeme.texts[0];
-    console.log(txt)
-    gCtx.fillText(txt.text, 20, 20);
     gCtx.fillStyle = txt.color;
     gCtx.font = `${txt.size}px ${txt.font}`
-
-
+    gCtx.fillText(txt.text, gCurrImg.canvasPosX + 20, gCurrImg.canvasPosY + 20);
+    // console.log(txt)
 }
+
 function createShadow() {
     gCtx.shadowOffsetX = 3;
     gCtx.shadowOffsetY = 3;
     gCtx.shadowColor = "rgba(0,0,0,0.3)";
     gCtx.shadowBlur = 4;
+}
+
+function deleteText() {
+    createCanvas();
+    fitImgByRatio(gCanvas, gCurrImg.imgElement);
+    resetModalTxtInput();
 }
 
         // function toggleShadow(){
