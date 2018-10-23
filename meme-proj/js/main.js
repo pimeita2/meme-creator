@@ -3,6 +3,7 @@
 
 function init() {
     console.log('controler on');
+    initCanvas();
     renderImgs();
 }
 
@@ -26,3 +27,7 @@ function onImgClick(elImg) {
     console.log(elImg);
 }
 
+function onSetFilter(statusFilter) {
+    setFilter(statusFilter);
+    renderImgs();
+}
