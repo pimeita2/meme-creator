@@ -1,0 +1,23 @@
+main {
+    background-color: brown;
+    min-width: 100px;
+    min-height: 100px;
+}
+
+.item {
+    margin: 5px;
+    min-height: 50px;
+    min-width: 50px;
+    /* max-height: 200px; */
+    /* max-width: 200px; */
+    background-color: rgba(0, 0, 0, 0.363);
+}
+
+.item img {
+    transition: .3s;
+}
+
+.item img:hover {
+    cursor: pointer;
+    transform: scale(0.95);
+}

@@ -1,0 +1,33 @@
+/* Main */
+
+/* main content */
+@import url('../css/_main_content.css');
+@import url('../css/_helpers.css');
+@import url('../css/_img_modal.css');
+
+/* reset default settings */
+* {
+    box-sizing: border-box;
+    /* background-size: contain;
+    background-position: center; */
+}
+
+body, html {
+    margin: 0;
+}
+
+body {
+    min-height: 100vh;
+    min-width: 100vw;
+    background-color: antiquewhite;
+}
+
+img {
+    max-width: 300px;
+    width: 100%;
+    height: 100%;
+}
+
+
+
+
