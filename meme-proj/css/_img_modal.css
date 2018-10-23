@@ -3,12 +3,35 @@
     width: 100vw;
     background-color: rgba(0, 0, 0, 0.301);
     position: fixed;
+    z-index: -1;
+    left: -9999px;
+    transition: .5s;
+}
+
+.imgModal-wrapper.open {
     top: 0;
     left: 0;
+    z-index: 1;
 }
 
 .modalContent {
-    height: 80vh;
+    height: fit-content;
+    max-height: 80vh;
     width: 80vw;
     background-color: antiquewhite;
+}
+
+.modalHeader {
+    min-height: 100px;
+    background-color: brown;
+}
+
+.modalBody {
+    height: 100%;
+    background-color: blue;
+}
+
+canvas {
+    background-color: rgba(255, 255, 255, 0.404);
+    margin: 10px;
 }
