@@ -18,7 +18,8 @@
 .modalContent {
     height: fit-content;
     margin-bottom: 20px;
-    width: 80vw;
+    min-width: 80vw;
+    max-width: 90vw;
     height: 80vh;
     background-color: antiquewhite;
     cursor: auto;
@@ -30,7 +31,7 @@
 }
 
 .modalBody {
-    max-height: 100%;
+    height: calc(100% - 100px);
 }
 
 canvas {
@@ -41,7 +42,6 @@ canvas {
 }
 
 .text-container {
-    max-width: 350px;
     width: 100%;
 }
 
