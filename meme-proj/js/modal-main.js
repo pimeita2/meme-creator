@@ -24,24 +24,13 @@ function modalContentClicked(ev) {
 }
 
 function drawImg(elImg) {
-    var imgWidth = elImg.naturalWidth;
-    var screenWidth = window.innerWidth - 20;
-    var scaleX = 1;
-    if (imgWidth > screenWidth)
-        scaleX = screenWidth / imgWidth;
-    var imgHeight = elImg.naturalHeight;
-    var screenHeight = window.innerHeight - gCanvas.offsetTop - 10;
-    var scaleY = 1;
-    if (imgHeight > screenHeight)
-        scaleY = screenHeight / imgHeight;
-    var scale = scaleY;
-    if (scaleX < scaleY)
-        scale = scaleX;
-    if (scale < 1) {
-        imgHeight = imgHeight * scale;
-        imgWidth = imgWidth * scale;
-    }
-    gCanvas.height = imgHeight;
-    gCanvas.width = imgWidth;
-    gCtx.drawImage(elImg, 0, 0, elImg.naturalWidth, elImg.naturalHeight, 0, 0, imgWidth, imgHeight);
+    // fit and render the image on the modal canvas
+    var hRatio = gCanvas.width / elImg.naturalWidth;
+    var vRatio = gCanvas.height / elImg.naturalHeight;
+    var ratio = Math.min(hRatio, vRatio);
+    var centerShift_x = (gCanvas.width - elImg.naturalWidth * ratio) / 2;
+    var centerShift_y = (gCanvas.height - elImg.naturalHeight * ratio) / 2;
+    gCtx.clearRect(0, 0, gCanvas.width, gCanvas.height);
+    gCtx.drawImage(elImg, 0, 0, elImg.naturalWidth, elImg.naturalHeight,
+        centerShift_x, centerShift_y, elImg.naturalWidth * ratio, elImg.naturalHeight * ratio);
 }
