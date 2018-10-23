@@ -5,12 +5,13 @@ function init() {
     console.log('controler on');
     initCanvas();
     renderImgs();
+    console.log(gImgs)
+
 }
 
 function renderImgs() {
     var imgs = getImgs();
-
-    console.log(imgs);
+    // console.log(imgs);
     var strHTML = '';
     
     strHTML = imgs.map((img, idx) => {
