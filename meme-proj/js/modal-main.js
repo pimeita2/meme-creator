@@ -47,6 +47,19 @@ function drawImg(elImg) {
 }
 
 
+
+function drawImg(elImg) {
+    // fit and render the image on the modal canvas
+    var hRatio = gCanvas.width / elImg.naturalWidth;
+    var vRatio = gCanvas.height / elImg.naturalHeight;
+    var ratio = Math.min(hRatio, vRatio);
+    var centerShift_x = (gCanvas.width - elImg.naturalWidth * ratio) / 2;
+    var centerShift_y = (gCanvas.height - elImg.naturalHeight * ratio) / 2;
+    gCtx.clearRect(0, 0, gCanvas.width, gCanvas.height);
+    gCtx.drawImage(elImg, 0, 0, elImg.naturalWidth, elImg.naturalHeight,
+        centerShift_x, centerShift_y, elImg.naturalWidth * ratio, elImg.naturalHeight * ratio);
+}
+
 var gMeme = {
     selectedImgId: 5,
     textPrefs:
@@ -65,14 +78,6 @@ function onWriteText(val) {
     gCtx.fillText(val, 20, 20);
 }
 
-function drawImg(elImg) {
-    // fit and render the image on the modal canvas
-    var hRatio = gCanvas.width / elImg.naturalWidth;
-    var vRatio = gCanvas.height / elImg.naturalHeight;
-    var ratio = Math.min(hRatio, vRatio);
-    var centerShift_x = (gCanvas.width - elImg.naturalWidth * ratio) / 2;
-    var centerShift_y = (gCanvas.height - elImg.naturalHeight * ratio) / 2;
-    gCtx.clearRect(0, 0, gCanvas.width, gCanvas.height);
-    gCtx.drawImage(elImg, 0, 0, elImg.naturalWidth, elImg.naturalHeight,
-        centerShift_x, centerShift_y, elImg.naturalWidth * ratio, elImg.naturalHeight * ratio);
+function handlePenColor(val) {
+    gCtx.strokeStyle = val;
 }
