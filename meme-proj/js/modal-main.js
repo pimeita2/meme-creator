@@ -45,3 +45,22 @@ function drawImg(elImg) {
     gCanvas.width = imgWidth;
     gCtx.drawImage(elImg, 0, 0, elImg.naturalWidth, elImg.naturalHeight, 0, 0, imgWidth, imgHeight);
 }
+
+
+var gMeme = {
+    selectedImgId: 5,
+    textPrefs:
+    {
+        text: 'I never eat Falafel',
+        font: 'Arial',
+        size: 20,
+        align: 'left',
+        color: 'red',
+        shadow: false,
+    }
+}
+
+function onWriteText(val) {
+    gCtx.font = '20pt Arial';
+    gCtx.fillText(val, 20, 20);
+}

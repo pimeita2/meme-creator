@@ -35,17 +35,5 @@ function onSetFilter(statusFilter) {
     renderImgs();
 }
 
-//function to move to main.modal.js
-
-function deleteToolbar(){
-    var lineInput = document.querySelector('text-container');
-    
-}
-
-function changeTextColor(){
-    
-}
-
-
 
 

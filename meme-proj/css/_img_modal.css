@@ -46,3 +46,7 @@ canvas {
 .text-container button {
     max-width: 20px;
 }
+
+.text-line{
+    color: black;
+}
