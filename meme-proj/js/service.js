@@ -55,12 +55,13 @@ function getImgs() {
     // if (!imgs) imgs = gImgs;
 }
 
-function x(imgKewords) {
-    var imgKewords = gImgs.keyWords
-
-}
-
 
 function setFilter(statusFilter) {
     gImgsFilter = statusFilter;
+}
+
+function downloadCanvas(elLink) {
+    console.log(canvas.toDataURL())
+    elLink.href = canvas.toDataURL()
+    elLink.download = 'my-canvas.jpg'
 }
