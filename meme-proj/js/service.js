@@ -43,7 +43,7 @@ function getImgById() {
 function getImgs() {
     createImgs();
     return gImgs.filter(function (img) {
-        console.log(gImgsFilter, 'img:', img, 'img key:', img.keyWords)
+        // console.log(gImgsFilter, 'img:', img, 'img key:', img.keyWords)
         return gImgsFilter === 'all' ||
             (gImgsFilter === 'happy' && img.keyWords.includes('happy')) ||
             (gImgsFilter === 'crazy' && img.keyWords.includes('crazy')) ||
@@ -55,12 +55,13 @@ function getImgs() {
     // if (!imgs) imgs = gImgs;
 }
 
-function x(imgKewords) {
-    var imgKewords = gImgs.keyWords
-
-}
-
 
 function setFilter(statusFilter) {
     gImgsFilter = statusFilter;
+}
+
+function downloadCanvas(elLink) {
+    console.log(canvas.toDataURL())
+    elLink.href = canvas.toDataURL()
+    elLink.download = 'my-canvas.jpg'
 }

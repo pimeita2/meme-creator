@@ -50,11 +50,12 @@
                 </div>
                 <div class="text-container flex justify-center wrap align-center">
 
-                    <input placeholder="Enter text here" type="text">
+                    <input class="text-line" placeholder="Enter text here" type="text">
 
                     <div class="textToolbar flex justify-center align-center">
                         <button onclick="deleteToolbar(this.parentElement)">D</button>
-                        <button onclick="changeTextColor()">Col</button>
+                        <input type="color" name="color" />
+                        <!-- <button onclick="changeTextColor()">Col</button> -->
                         <button>Font</button>
                         <button>Shdw</button>
                         <button onclick="increaseFontSize()">+</button>
@@ -69,7 +70,7 @@
         </div>
     </div>
 
-
+    <!-- <a class="save-item" onclick="downloadCanvas(this)">Save</a> -->
 
     <script src="js/utils-service.js"></script>
     <script src="js/modal-main.js"></script>
