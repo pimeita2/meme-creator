@@ -2,7 +2,7 @@
 
 
 function init() {
-    console.log('controler on');
+    // console.log('controler on');
     initCanvas();
     renderImgs();
     console.log(gImgs)
@@ -34,3 +34,18 @@ function onSetFilter(statusFilter) {
     setFilter(statusFilter);
     renderImgs();
 }
+
+//function to move to main.modal.js
+
+function deleteToolbar(){
+    var lineInput = document.querySelector('text-container');
+    
+}
+
+function changeTextColor(){
+    
+}
+
+
+
+

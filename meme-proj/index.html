@@ -53,11 +53,12 @@
                 </div>
                 <div class="text-container">
 
-                    <input placeholder="Enter text here" type="text">
+                    <input class="text-line" placeholder="Enter text here" type="text">
 
                     <div class="textToolbar">
                         <button onclick="deleteToolbar(this.parentElement)">D</button>
-                        <button onclick="changeTextColor()">Col</button>
+                        <input type="color" name="color" />
+                        <!-- <button onclick="changeTextColor()">Col</button> -->
                         <button>Font</button>
                         <button>Shdw</button>
                         <button onclick="increaseFontSize()">+</button>
