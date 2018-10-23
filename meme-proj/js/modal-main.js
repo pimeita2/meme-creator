@@ -7,8 +7,8 @@ function initCanvas() {
     console.log('canvas loaded');
     gCanvas = document.querySelector('canvas');
     gCtx = gCanvas.getContext('2d');
-    gCanvas.width = document.querySelector('.modalBody').clientWidth * 0.8;
-    gCanvas.height = document.querySelector('.modalBody').clientHeight * 0.7;
+    // gCanvas.width = document.querySelector('.modalBody').clientWidth * 0.8;
+    // gCanvas.height = document.querySelector('.modalBody').clientHeight * 0.7;
 }
 
 function openModal() {
@@ -49,16 +49,50 @@ function drawImg(elImg) {
 
 
 function drawImg(elImg) {
-    // fit and render the image on the modal canvas
-    var hRatio = gCanvas.width / elImg.naturalWidth;
-    var vRatio = gCanvas.height / elImg.naturalHeight;
-    var ratio = Math.min(hRatio, vRatio);
-    var centerShift_x = (gCanvas.width - elImg.naturalWidth * ratio) / 2;
-    var centerShift_y = (gCanvas.height - elImg.naturalHeight * ratio) / 2;
+    var elModalBody = document.querySelector('.modalBody');
+    gCanvas.style.width = '100%';
+    gCanvas.style.height = '100%';
+
+    gCanvas.width = gCanvas.offsetWidth;
+    gCanvas.height = gCanvas.offsetHeight;
+
     gCtx.clearRect(0, 0, gCanvas.width, gCanvas.height);
-    gCtx.drawImage(elImg, 0, 0, elImg.naturalWidth, elImg.naturalHeight,
-        centerShift_x, centerShift_y, elImg.naturalWidth * ratio, elImg.naturalHeight * ratio);
+    fitImgByRatio(gCanvas, elImg);
 }
+
+function fitImgByRatio(canvas, imageObj) {
+    var imageAspectRatio = imageObj.width / imageObj.height;
+    var canvasAspectRatio = canvas.width / canvas.height;
+    var renderableHeight, renderableWidth, xStart, yStart;
+
+    // If image's aspect ratio is less than canvas's we fit on height
+    // and place the image centrally along width
+    if (imageAspectRatio < canvasAspectRatio) {
+        renderableHeight = canvas.height;
+        renderableWidth = imageObj.width * (renderableHeight / imageObj.height);
+        xStart = (canvas.width - renderableWidth) / 2;
+        yStart = 0;
+    }
+
+    // If image's aspect ratio is greater than canvas's we fit on width
+    // and place the image centrally along height
+    else if (imageAspectRatio > canvasAspectRatio) {
+        renderableWidth = canvas.width
+        renderableHeight = imageObj.height * (renderableWidth / imageObj.width);
+        xStart = 0;
+        yStart = (canvas.height - renderableHeight) / 2;
+    }
+
+    // Happy path - keep aspect ratio
+    else {
+        renderableHeight = canvas.height;
+        renderableWidth = canvas.width;
+        xStart = 0;
+        yStart = 0;
+    }
+    gCtx.drawImage(imageObj, xStart, yStart, renderableWidth, renderableHeight);
+};
+
 
 var gMeme = {
     selectedImgId: 5,
