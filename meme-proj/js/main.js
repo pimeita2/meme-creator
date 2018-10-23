@@ -3,6 +3,7 @@
 
 function init() {
     console.log('controler on');
+    initCanvas();
     renderImgs();
 }
 
@@ -24,5 +25,7 @@ function renderImgs() {
 
 function onImgClick(elImg) {
     console.log(elImg);
+    drawImg(elImg);
+    openModal();
 }
 
