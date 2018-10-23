@@ -50,13 +50,12 @@ function drawImg(elImg) {
 
 function drawImg(elImg) {
     var elModalBody = document.querySelector('.modalBody');
-    gCanvas.style.width = '100%';
-    gCanvas.style.height = '100%';
+    // gCanvas.style.width = '100%';
+    // gCanvas.style.height = '100%';
 
-    gCanvas.width = gCanvas.offsetWidth;
-    gCanvas.height = gCanvas.offsetHeight;
-
-    gCtx.clearRect(0, 0, gCanvas.width, gCanvas.height);
+    
+    // gCtx.clearRect(0, 0, gCanvas.width, gCanvas.height);
+    console.log('offset width and height', gCanvas.offsetHeight, gCanvas.offsetWidth);
     fitImgByRatio(gCanvas, elImg);
 }
 

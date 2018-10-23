@@ -25,7 +25,7 @@ function renderImgs() {
 }
 
 function onImgClick(elImg) {
-    console.log(elImg);
+    // console.log(elImg);
     drawImg(elImg);
     openModal();
 }
