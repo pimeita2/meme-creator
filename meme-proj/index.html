@@ -50,10 +50,10 @@
                 </div>
                 <div class="text-container flex justify-center wrap align-center">
 
-                    <input class="text-line" placeholder="Enter text here" type="text">
+                    <input class="text-line" placeholder="Enter text here" type="text" onchange="onWriteText(this.value)">
 
                     <div class="textToolbar flex justify-center align-center">
-                        <button onclick="deleteToolbar(this.parentElement)">D</button>
+                        <button onclick="deleteText()">D</button>
                         <input type="color" name="color" />
                         <!-- <button onclick="changeTextColor()">Col</button> -->
                         <button>Font</button>
