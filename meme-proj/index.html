@@ -54,10 +54,10 @@
 
                     <div class="textToolbar flex justify-center align-center">
                         <button onclick="deleteToolbar()">D</button>
-                        <input type="color" name="color" onchange="onColorChang(this.value)"/>
+                        <input type="color" onchange="onColorChang(this.value)" />
                         <!-- <button onclick="changeTextColor()">Col</button> -->
-                        <button>Font</button>
-                        <button>Shdw</button>
+                        <button onchange="onFontChange(this.value)">Font</button>
+                        <button onchange="toggleShadow(this.value)">Shdw</button>
                         <button onclick="increaseFontSize()">+</button>
                         <button onclick="decreaseFontSize()">-</button>
                         <button value="left" onclick="alignText(this.value)">le</button>
