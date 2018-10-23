@@ -60,24 +60,43 @@ function drawImg(elImg) {
         centerShift_x, centerShift_y, elImg.naturalWidth * ratio, elImg.naturalHeight * ratio);
 }
 
-var gMeme = {
-    selectedImgId: 5,
-    textPrefs:
-    {
-        text: 'I never eat Falafel',
-        font: 'Arial',
-        size: 20,
-        align: 'left',
-        color: 'red',
-        shadow: false,
+//////////////////////////////////////////////////////
+
+var gMeme;
+
+function openModal() {
+    gMeme = createMeme()
+}
+
+function createMeme() {
+    var meme = {
+        selectedImgId: 5,
+        texts:[
+            {
+                text: '',
+                font: 'Arial',
+                size: 20,
+                align: 'left',
+                color: 'red',
+                shadow: false,
+            }
+        ]
     }
+    return meme;
 }
 
 function onWriteText(val) {
-    gCtx.font = '20pt Arial';
-    gCtx.fillText(val, 20, 20);
+    gMeme.texts[0].text = val;
+    renderMeme();
 }
 
-function handlePenColor(val) {
-    gCtx.strokeStyle = val;
+function onColorChang(val){
+
+}
+
+function renderMeme(){
+    var txt = gMeme.texts[0].text;
+    gCtx.fillText(txt.text , 20 ,20);
+    gCtx.strokeStyle = txt.color;
+
 }
