@@ -160,6 +160,8 @@ function createShadow() {
     gCtx.shadowBlur = 4;
 }
 
+
+
 function deleteText() {
     createCanvas();
     fitImgByRatio(gCanvas, gCurrImg.imgElement);
