@@ -15,6 +15,9 @@ function createCanvas() {
     elModalImg.innerHTML = `<canvas> </canvas>`;
     gCanvas = document.querySelector('canvas');
     gCtx = gCanvas.getContext('2d');
+
+    gCanvas.height = gCanvas.offsetHeight;
+    gCanvas.width = gCanvas.offsetWidth;
 }
 
 function openModal() {
@@ -33,11 +36,7 @@ function modalContentClicked(ev) {
     ev.stopPropagation();
 }
 
-function drawImg(elImg) {
-
-    // var imgWidth = elImg.naturalWidth;
-    // var imgHeight = elImg.naturalHeight;
-    
+function drawImg(elImg) {    
     fitImgByRatio(gCanvas, elImg);
 }
 
@@ -149,7 +148,7 @@ function renderMeme() {
     var txt = gMeme.texts[0];
     gCtx.fillStyle = txt.color;
     gCtx.font = `${txt.size}px ${txt.font}`
-    gCtx.fillText(txt.text, gCurrImg.canvasPosX + 20, gCurrImg.canvasPosY + 20);
+    gCtx.fillText(txt.text, gCurrImg.canvasPosX + 20, gCurrImg.canvasPosY + 30);
     // console.log(txt)
 }
 
