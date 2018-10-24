@@ -12,16 +12,11 @@ function initCanvas() {
     gMeme = createMeme();
     // renderMeme();
 }
-<<<<<<< HEAD
-// ch
-function renderCanvas() {
-=======
 
 // createCanvas should be rendercanvas, make the canvas permanent in the html and clean it using a function.
 // should be in main
 
 function createCanvas() {
->>>>>>> aed7712c6c1572b69065c276bb0eda8889f7ce0b
     var elModalImg = document.querySelector('.modalImg');
     elModalImg.innerHTML = `<canvas> </canvas>`;
     gCanvas = document.querySelector('canvas');
