@@ -8,6 +8,11 @@
     transition: .5s;
 }
 
+.imgModal-wrapper>* {
+    font-family: Impact;
+    /* font-family: Verdana; */
+}
+
 .imgModal-wrapper.open {
     top: 0;
     left: 0;
@@ -25,25 +30,22 @@
 }
 
 .modalHeader {
-    min-height: 100px;
+    height: 10%;
     background-color: brown;
 }
 
 .modalBody {
-    height: calc(100% - 100px);
+    height: 90%;
 }
 
 .modalImg {
     width: 100%;
     margin-top: 10px;
-    height: 75%;
+    max-height: 70%;
 }
 
 canvas {
-    /* width: 90%; */
-    /* height: 90%; */
-    /* background: black; */
-    border-radius: 10px;
+    margin: 5px;
 }
 
 .text-container {
@@ -78,11 +80,33 @@ button.delete {
 
 .font-list {
     position: absolute;
-    bottom: 50%;
     align-self: flex-end;
+    top: 80%;
+    background-color: brown;
+    color: white;
+    padding: 5px;
+    z-index: -1;
+    min-width: 120px;
+    opacity: 0;
+    transition: .3s;
 }
 
-.fonts {
+.font-list> * {
+    padding-bottom: 5px;
+    min-height: 25px;
+}
+
+.font-list>*:hover {
+    color: rgb(228, 228, 228);
+    font-size: 0.9rem;
+}
+
+.font-list.open {
+    opacity: 1;
+    z-index: 2;
+}
+
+.fonts-btn {
     cursor: pointer;
     background-color: lightgray;
     border: 1px solid black;

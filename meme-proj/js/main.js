@@ -25,8 +25,10 @@ function renderGallery() {
 function onImgClick(elImg) {
     // console.log(elImg);
     updateCurrImg(elImg);
-    renderCanvas(); // make the render canvas another function that cleans the canvas
+    createCanvas();
     drawImg(elImg);
+    renderMeme();
+    renderCanvas(); // make the render canvas another function that cleans the canvas
     resetModalTxtInput();
     openModal();
 }
@@ -45,9 +47,8 @@ function changeCurrentFilterDisplay(elFilter) {
     }
     elFilter.classList.add('current-filter');
 }
-// move to modal main
 function onFontBtnClick() {
-
+    document.querySelector('.font-list').classList.toggle('open');
 }
 
 function createCanvas() {
@@ -55,7 +56,7 @@ function createCanvas() {
     elCanvasContainer.innerHTML = `<canvas> </canvas>`;
     gCanvas = document.querySelector('canvas');
     gCtx = gCanvas.getContext('2d');
-    console.dir(elCanvasContainer)
+    // console.dir(elCanvasContainer);
 
     /// todo clean canvas
 }
@@ -77,7 +78,7 @@ function modalContentClicked(ev) {
 }
 
 function drawImg(elImg) {
-    createCanvas(); // create canvas should be called once to reset the canvas settings onload
+    // createCanvas(); // create canvas should be called once to reset the canvas settings onload
     drawImgOnCanvasByRatio(gCanvas, elImg);
 }
 
@@ -91,7 +92,7 @@ function onColorChange(color) {
     renderMeme();
 }
 
-function onFontChange(font) {
+function onFontSelect(font) {
     changeFont(font);
     renderMeme();
 }
@@ -109,7 +110,8 @@ function renderMeme() {
     gCtx.font = `${txt.size}px ${txt.font}`;
     (txt.shadow)? createTextShadow() : deleteTextShadow();
     gCtx.textAlign = txt.align;
-    gCtx.fillText(txt.str, 270, 30);
+    var elCanvasContainerWidth = document.querySelector('.modalImg').clientWidth;
+    gCtx.fillText(txt.str, elCanvasContainerWidth / 2, 30);
 }
 
 function deleteText() {

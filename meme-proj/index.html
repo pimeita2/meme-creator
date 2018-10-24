@@ -59,11 +59,13 @@
                         <!-- <button onclick="changeTextColor()">Col</button> -->
                         <button onclick="onChangeFontSize('+')">+</button>
                         <button onclick="onChangeFontSize('-')">-</button>
-                        <span class="fonts flex justify-center" onchange="onFontBtnClick()"><i class="fas fa-font"></i>
+                        <span class="fonts-btn flex justify-center" >
+                            <i class="fas fa-font" onclick="onFontBtnClick()"></i>
                             <ul class="font-list">
-                                <li onclick="onFontSelect(this.innerText)">Arial</li>
-                                <li onclick="onFontSelect(this.innerText)">David</li>
-                                <li onclick="onFontSelect(this.innerText)">Times New Roman</li>
+                                <li onclick="onFontSelect('Arial')">Arial</li>
+                                <li onclick="onFontSelect('David')">David</li>
+                                <li onclick="onFontSelect('Verdana')">Verdana</li>
+                                <li onclick="onFontSelect('Impact')">Impact (Default)</li>
                             </ul>
                         </span>
                        

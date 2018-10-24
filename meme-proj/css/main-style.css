@@ -1,11 +1,11 @@
 /* Main */
 
 /* main content */
-
 @import url('../css/_header.css');
 @import url('../css/_main_content.css');
 @import url('../css/_helpers.css');
 @import url('../css/_img_modal.css');
+
 
 /* reset default settings */
 * {
