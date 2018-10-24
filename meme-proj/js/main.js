@@ -104,17 +104,17 @@ function onChangeFontSize(sym) {
 
 function renderMeme() {
     renderCanvas();
-    drawImgOnCanvasByRatio(gCanvas, gCurrImg.imgElement);
+    drawImgOnCanvasByRatio(gCanvas, gMeme.imgElement);
     var txt = gMeme.lines[0];
     gCtx.textAlign = txt.align;
     gCtx.fillStyle = txt.color;
     gCtx.font = `${txt.size}px ${txt.font}`;
-    gCtx.fillText(txt.str, gCurrImg.canvasPosX + 20, gCurrImg.canvasPosY + 30);
+    gCtx.fillText(txt.str, gMeme.imgStartX + 20, gMeme.imgStartY + 30);
 }
 
 function deleteText() {
     renderCanvas();
-    drawImgOnCanvasByRatio(gCanvas, gCurrImg.imgElement);
+    drawImgOnCanvasByRatio(gCanvas, gMeme.imgElement);
     resetModalTxtInput();
 }
 

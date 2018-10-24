@@ -43,10 +43,10 @@ function drawImgOnCanvasByRatio(canvas, imageObj) {
         yStart = 0;
     }
     // console.log('x start, y start', xStart, yStart);
-    gCurrImg.canvasPosX = xStart;
-    gCurrImg.canvasPosY = yStart;
-    gCurrImg.canvasEndX = renderableWidth;
-    gCurrImg.canvasEndY = renderableHeight;
+    gMeme.imgStartX = xStart;
+    gMeme.imgStartY = yStart;
+    gMeme.imgEndX = renderableWidth;
+    gMeme.imgEndY = renderableHeight;
     gCtx.drawImage(imageObj, xStart, yStart, renderableWidth, renderableHeight);
 };
 
