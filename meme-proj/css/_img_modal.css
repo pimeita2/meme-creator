@@ -73,3 +73,18 @@ button.delete {
     min-width: 50px;
     margin-right: 5px;
 }
+
+.font-list {
+    position: absolute;
+    bottom: 50%;
+    align-self: flex-end;
+}
+
+.fonts {
+    cursor: pointer;
+    background-color: lightgray;
+    border: 1px solid black;
+    min-width: 25px;
+    min-height: 22px;
+    text-align: center;
+}

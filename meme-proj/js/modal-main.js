@@ -4,11 +4,17 @@ var gCanvas;
 var gCtx;
 var gMeme;
 
+
+// dont need the init. the createMeme belongs to the modal-service
+
 function initCanvas() {
     // console.log('canvas loaded');
     gMeme = createMeme();
     // renderMeme();
 }
+
+// createCanvas should be rendercanvas, make the canvas permanent in the html and clean it using a function.
+// should be in main
 
 function createCanvas() {
     var elModalImg = document.querySelector('.modalImg');
@@ -20,70 +26,70 @@ function createCanvas() {
     gCanvas.width = gCanvas.offsetWidth;
 }
 
+// should be in main
 function openModal() {
     document.querySelector('.imgModal-wrapper').classList.add('open');
 }
-
+// should be in main
 function closeModal(elModal) {
     elModal.classList.remove('open');
 }
-
+// should be in main
 function resetModalTxtInput() {
     document.querySelector('input[type="text"]').value = '';
 }
-
+// should be in main. is it necessary? make z-index higher than the modal-wrapper's
 function modalContentClicked(ev) {
     ev.stopPropagation();
 }
-
-function drawImg(elImg) {    
+// should be in main
+function drawImg(elImg) {
     fitImgByRatio(gCanvas, elImg);
 }
-
+// should be in modal - service
 function fitImgByRatio(canvas, imageObj) {
     var imageAspectRatio = imageObj.naturalWidth / imageObj.naturalHeight;
-	var canvasAspectRatio = canvas.width / canvas.height;
+    var canvasAspectRatio = canvas.width / canvas.height;
     var renderableHeight, renderableWidth, xStart, yStart;
-    
+
     var imgWidth = imageObj.naturalWidth;
     var imgHeight = imageObj.naturalHeight;
 
-	// If image's aspect ratio is less than canvas's we fit on height
-	// and place the image centrally along width
-	if(imageAspectRatio < canvasAspectRatio) {
-		renderableHeight = canvas.height;
-		renderableWidth = imgWidth * (renderableHeight / imgHeight);
-		xStart = (canvas.width - renderableWidth) / 2;
-		yStart = 0;
-	}
+    // If image's aspect ratio is less than canvas's we fit on height
+    // and place the image centrally along width
+    if (imageAspectRatio < canvasAspectRatio) {
+        renderableHeight = canvas.height;
+        renderableWidth = imgWidth * (renderableHeight / imgHeight);
+        xStart = (canvas.width - renderableWidth) / 2;
+        yStart = 0;
+    }
 
-	// If image's aspect ratio is greater than canvas's we fit on width
-	// and place the image centrally along height
-	else if(imageAspectRatio > canvasAspectRatio) {
-		renderableWidth = canvas.width
-		renderableHeight = imgHeight * (renderableWidth / imgWidth);
-		xStart = 0;
-		yStart = (canvas.height - renderableHeight) / 2;
-	}
+    // If image's aspect ratio is greater than canvas's we fit on width
+    // and place the image centrally along height
+    else if (imageAspectRatio > canvasAspectRatio) {
+        renderableWidth = canvas.width
+        renderableHeight = imgHeight * (renderableWidth / imgWidth);
+        xStart = 0;
+        yStart = (canvas.height - renderableHeight) / 2;
+    }
 
-	// Happy path - keep aspect ratio
-	else {
-		renderableHeight = canvas.height;
-		renderableWidth = canvas.width;
-		xStart = 0;
-		yStart = 0;
+    // Happy path - keep aspect ratio
+    else {
+        renderableHeight = canvas.height;
+        renderableWidth = canvas.width;
+        xStart = 0;
+        yStart = 0;
     }
     // console.log('x start, y start', xStart, yStart);
     gCurrImg.canvasPosX = xStart;
     gCurrImg.canvasPosY = yStart;
     gCurrImg.canvasEndX = renderableWidth;
     gCurrImg.canvasEndY = renderableHeight;
-	gCtx.drawImage(imageObj, xStart, yStart, renderableWidth, renderableHeight);
+    gCtx.drawImage(imageObj, xStart, yStart, renderableWidth, renderableHeight);
 };
 
 
-//////////////////////////////////////////////////////
-
+// should be in modal-service
 function createMeme() {
     return {
         selectedImgId: 5,
@@ -99,18 +105,18 @@ function createMeme() {
         ]
     }
 }
-
+// should be in main
 function onWriteText(val) {
     gMeme.texts[0].text = val;
     renderMeme();
     val = '';
 }
-
+// should be in main
 function onColorChange(val) {
     gMeme.texts[0].color = val;
     renderMeme();
 }
-
+// should be in main
 function onFontChange(val) {
     gMeme.texts[0].font = val;
     renderMeme();
@@ -120,28 +126,28 @@ function increaseFontSize() {
     gMeme.texts[0].size += 1;
     renderMeme();
 }
-
+//  unite both funcs ^ v and put them on modal-service. make a main func that gives the function their value
 function decreaseFontSize() {
     gMeme.texts[0].size -= 1;
     renderMeme();
 }
-
+// should be in modal-service
 function alignText(val) {
     // console.log(val);
     if (val === 'left') {
         gMeme.texts[0].align = 'left'
         gCtx.textAlign = 'left';
-    } 
+    }
     if (val === 'center') {
         gMeme.texts[0].align = 'center';
         gCtx.textAlign = 'center';
-    } 
+    }
     if (val === 'right') {
         gMeme.texts[0].aling = 'right';
         gCtx.textAlign = 'right';
     }
 }
-
+// should be in main
 function renderMeme() {
     createCanvas();
     fitImgByRatio(gCanvas, gCurrImg.imgElement);
@@ -151,7 +157,7 @@ function renderMeme() {
     gCtx.fillText(txt.text, gCurrImg.canvasPosX + 20, gCurrImg.canvasPosY + 30);
     // console.log(txt)
 }
-
+// should be in service
 function createShadow() {
     gCtx.shadowOffsetX = 3;
     gCtx.shadowOffsetY = 3;
@@ -160,7 +166,7 @@ function createShadow() {
 }
 
 
-
+// should be in main
 function deleteText() {
     createCanvas();
     fitImgByRatio(gCanvas, gCurrImg.imgElement);
