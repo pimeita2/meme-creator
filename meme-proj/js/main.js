@@ -1,6 +1,5 @@
 'use strict';
 
-
 function init() {
     // console.log('controler on');
     renderGallery();
@@ -51,6 +50,7 @@ function onFontBtnClick() {
 }
 
 function createCanvas() {
+    var elCanvasContainer = document.querySelector('.modalImg')
     elCanvasContainer.innerHTML = `<canvas> </canvas>`;
     gCanvas = document.querySelector('canvas');
     gCtx = gCanvas.getContext('2d');
@@ -106,9 +106,10 @@ function renderMeme() {
     var txt = gMeme.lines[0];
     gCtx.fillStyle = txt.color;
     gCtx.font = `${txt.size}px ${txt.font}`;
-    (txt.shadow)? createTextShadow() : deleteTextShadow();
+    (txt.shadow) ? createTextShadow() : deleteTextShadow();
     gCtx.textAlign = txt.align;
-    gCtx.fillText(txt.str, 270, 30);
+    var canvasContainer = document.querySelector('.modalImg');
+    gCtx.fillText(txt.str, canvasContainer.clientWidth / 2, 30);
 }
 
 function deleteText() {
@@ -120,4 +121,3 @@ function deleteText() {
 function clearValue(elInput) {
     elInput.value = '';
 }
-
