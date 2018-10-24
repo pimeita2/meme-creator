@@ -19,23 +19,14 @@
         <nav class="main-nav">
             <a href="#">Filter</a>
             <ul class="filterOpts">
-                <li data-trans="filter-all" onclick="onSetFilter(this.value)">all</li>
-                <li value="happy" data-trans="filter-happy" onclick="onSetFilter(this.value)">happy</li>
-                <li value="crazy" data-trans="filter-crazy" onclick="onSetFilter(this.value)">crazy</li>
-                <li value="sarcastic" data-trans="filter-sarcastic" onclick="onSetFilter(this.value)">sarcastic</li>
-                <li value="sad" data-trans="filter-sad" onclick="onSetFilter(this.value)">sad</li>
-                <li value="animal" data-trans="filter-animal" onclick="onSetFilter(this.value)">animals</li>
-                <li value="cute" data-trans="filter-cute" onclick="onSetFilter(this.value)">cute</li>
+                <li data-trans="filter-all" onclick="onSetFilter(this.innerText, this)">all</li>
+                <li data-trans="filter-happy" onclick="onSetFilter(this.innerText, this)">happy</li>
+                <li data-trans="filter-crazy" onclick="onSetFilter(this.innerText, this)">crazy</li>
+                <li data-trans="filter-sarcastic" onclick="onSetFilter(this.innerText, this)">sarcastic</li>
+                <li data-trans="filter-sad" onclick="onSetFilter(this.innerText, this)">sad</li>
+                <li data-trans="filter-animal" onclick="onSetFilter(this.innerText, this)">animals</li>
+                <li data-trans="filter-cute" onclick="onSetFilter(this.innerText, this)">cute</li>
             </ul>
-            <select id="fills-filter" onchange="onSetFilter(this.value)">
-                <option value="all" data-trans="filter-all">All</option>
-                <option value="happy" data-trans="filter-happy">Happy</option>
-                <option value="crazy" data-trans="filter-crazy">Crazy</option>
-                <option value="sarcastic" data-trans="filter-sarcastic">Sarcastic</option>
-                <option value="sad" data-trans="filter-sad">Sad</option>
-                <option value="animal" data-trans="filter-animal">Animals</option>
-                <option value="cute" data-trans="filter-cute">Cute</option>
-            </select>
         </nav>
     </header>
 
@@ -67,6 +58,14 @@
                         <!-- <button onclick="changeTextColor()">Col</button> -->
                         <button onclick="increaseFontSize()">+</button>
                         <button onclick="decreaseFontSize()">-</button>
+                        <span class="fonts flex justify-center" onchange="onFontBtnClick()"><i class="fas fa-font"></i>
+                            <ul class="font-list">
+                                <li onclick="onFontSelect(this.innerText)">Arial</li>
+                                <li onclick="onFontSelect(this.innerText)">David</li>
+                                <li onclick="onFontSelect(this.innerText)">Times New Roman</li>
+                            </ul>
+                        </span>
+                        <button onchange="toggleShadow(this.value)"><i class="fas fa-highlighter"></i></button>
                         <button onchange="onFontChange(this.value)"><i class="fas fa-font"></i></button>
                         <button onclick="toggleShadow(event)"><i class="fas fa-highlighter on-off"></i></button>
 

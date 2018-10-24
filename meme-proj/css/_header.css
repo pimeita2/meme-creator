@@ -31,10 +31,11 @@ header a {
 
 .filterOpts>* {
     width: 100%;
-    margin-bottom: 5px;
+    padding-bottom: 5px;
     cursor: pointer;
     min-width: 150px;
     text-transform: capitalize;
+    height: 100%;
 }
 
 .filterOpts>li:hover {
@@ -47,4 +48,8 @@ header a:hover ~ul, ul:hover {
 
 select {
     display: none;
+}
+
+.current-filter {
+    background-color: rgb(114, 38, 98);
 }

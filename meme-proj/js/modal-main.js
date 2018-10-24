@@ -4,13 +4,24 @@ var gCanvas;
 var gCtx;
 var gMeme;
 
+
+// dont need the init. the createMeme belongs to the modal-service
+
 function initCanvas() {
     // console.log('canvas loaded');
     gMeme = createMeme();
     // renderMeme();
 }
+<<<<<<< HEAD
 // ch
 function renderCanvas() {
+=======
+
+// createCanvas should be rendercanvas, make the canvas permanent in the html and clean it using a function.
+// should be in main
+
+function createCanvas() {
+>>>>>>> aed7712c6c1572b69065c276bb0eda8889f7ce0b
     var elModalImg = document.querySelector('.modalImg');
     elModalImg.innerHTML = `<canvas> </canvas>`;
     gCanvas = document.querySelector('canvas');
@@ -21,26 +32,28 @@ function renderCanvas() {
     /// todo clean canvas
 }
 
+// should be in main
 function openModal() {
     document.querySelector('.imgModal-wrapper').classList.add('open');
 }
-
+// should be in main
 function closeModal(elModal) {
     elModal.classList.remove('open');
 }
-
+// should be in main
 function resetModalTxtInput() {
     document.querySelector('input[type="text"]').value = '';
 }
-
+// should be in main. is it necessary? make z-index higher than the modal-wrapper's
 function modalContentClicked(ev) {
     ev.stopPropagation();
 }
+// should be in main
 
 function drawImg(elImg) {
     fitImgByRatio(gCanvas, elImg);
 }
-
+// should be in modal - service
 function fitImgByRatio(canvas, imageObj) {
     var imageAspectRatio = imageObj.naturalWidth / imageObj.naturalHeight;
     var canvasAspectRatio = canvas.width / canvas.height;
@@ -83,6 +96,23 @@ function fitImgByRatio(canvas, imageObj) {
 };
 
 
+// should be in modal-service
+function createMeme() {
+    return {
+        selectedImgId: 5,
+        texts: [
+            {
+                text: '',
+                font: 'Arial',
+                size: 10,
+                align: 'left',
+                color: '#ff0000',
+                shadow: false,
+            }
+        ]
+    }
+}
+// should be in main
 //////////////////////////////////////
 // need to seporate to service modal//
 
@@ -91,12 +121,12 @@ function onWriteText(val) {
     renderMeme();
     val = '';
 }
-
+// should be in main
 function onColorChange(val) {
     gMeme.texts[0].color = val;
     renderMeme();
 }
-
+// should be in main
 function onFontChange(val) {
     gMeme.texts[0].font = val;
     renderMeme();
@@ -106,11 +136,28 @@ function increaseFontSize() {
     gMeme.texts[0].size += 1;
     renderMeme();
 }
-
+//  unite both funcs ^ v and put them on modal-service. make a main func that gives the function their value
 function decreaseFontSize() {
     gMeme.texts[0].size -= 1;
     renderMeme();
 }
+// should be in modal-service
+function alignText(val) {
+    // console.log(val);
+    if (val === 'left') {
+        gMeme.texts[0].align = 'left'
+        gCtx.textAlign = 'left';
+    }
+    if (val === 'center') {
+        gMeme.texts[0].align = 'center';
+        gCtx.textAlign = 'center';
+    }
+    if (val === 'right') {
+        gMeme.texts[0].aling = 'right';
+        gCtx.textAlign = 'right';
+    }
+}
+// should be in main
 
 function createMeme() {
     return {
@@ -144,6 +191,9 @@ function renderMeme() {
     gCtx.font = `${txt.size}px ${txt.font}`
     gCtx.fillText(txt.text, gCurrImg.canvasPosX + 20, gCurrImg.canvasPosY + 30);
 }
+// should be in service
+function createShadow() {
+}
 
 function createTextShadow() {
     gCtx.shadowOffsetX = 3;
@@ -159,12 +209,13 @@ function deleteTextShadow() {
     gCtx.shadowBlur = 0;
 }
 
+// should be in main
 function toggleShadow(ev) {
     // console.log(ev);
     // document.querySelector('on-off')
     gMeme.texts[0].shadow = !gMeme.texts[0].shadow
     console.log(gMeme.texts[0].shadow);
-    
+
     // var txt = gMeme.texts[0];
     // (txt.shadow) ? createTextShadow() : deleteTextShadow()
 }
