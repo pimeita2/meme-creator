@@ -10,44 +10,54 @@ function renderCanvas() {
 
 // should be in modal - service
 function drawImgOnCanvasByRatio(canvas, imageObj) {
-    var imageAspectRatio = imageObj.naturalWidth / imageObj.naturalHeight;
-    var canvasAspectRatio = canvas.width / canvas.height;
-    var renderableHeight, renderableWidth, xStart, yStart;
+    // var imageAspectRatio = imageObj.naturalWidth / imageObj.naturalHeight;
+    // var canvasAspectRatio = canvas.width / canvas.height;
+    // var renderableHeight, renderableWidth, xStart, yStart;
 
-    var imgWidth = imageObj.naturalWidth;
+    // var imgWidth = imageObj.naturalWidth;
+    // var imgHeight = imageObj.naturalHeight;
+
+    // // If image's aspect ratio is less than canvas's we fit on height
+    // // and place the image centrally along width
+    // if (imageAspectRatio < canvasAspectRatio) {
+    //     renderableHeight = canvas.height;
+    //     renderableWidth = imgWidth * (renderableHeight / imgHeight);
+    //     xStart = (canvas.width - renderableWidth) / 2;
+    //     yStart = 0;
+    // }
+
+    // // If image's aspect ratio is greater than canvas's we fit on width
+    // // and place the image centrally along height
+    // else if (imageAspectRatio > canvasAspectRatio) {
+    //     renderableWidth = canvas.width
+    //     renderableHeight = imgHeight * (renderableWidth / imgWidth);
+    //     xStart = 0;
+    //     yStart = (canvas.height - renderableHeight) / 2;
+    // }
+
+    // // Happy path - keep aspect ratio
+    // else {
+    //     renderableHeight = canvas.height;
+    //     renderableWidth = canvas.width;
+    //     xStart = 0;
+    //     yStart = 0;
+    // }
+    // // console.log('x start, y start', xStart, yStart);
+    // gMeme.imgStartX = xStart;
+    // gMeme.imgStartY = yStart;
+    // gMeme.imgEndX = renderableWidth;
+    // gMeme.imgEndY = renderableHeight;
+    var elCanvasContainer = document.querySelector('.modalImg');
+    var ratio;
     var imgHeight = imageObj.naturalHeight;
+    var imgWidth = imageObj.naturalWidth;
 
-    // If image's aspect ratio is less than canvas's we fit on height
-    // and place the image centrally along width
-    if (imageAspectRatio < canvasAspectRatio) {
-        renderableHeight = canvas.height;
-        renderableWidth = imgWidth * (renderableHeight / imgHeight);
-        xStart = (canvas.width - renderableWidth) / 2;
-        yStart = 0;
-    }
+    (imgHeight > imgWidth) ? ratio = imgHeight / imgWidth : ratio = imgWidth / imgHeight;
 
-    // If image's aspect ratio is greater than canvas's we fit on width
-    // and place the image centrally along height
-    else if (imageAspectRatio > canvasAspectRatio) {
-        renderableWidth = canvas.width
-        renderableHeight = imgHeight * (renderableWidth / imgWidth);
-        xStart = 0;
-        yStart = (canvas.height - renderableHeight) / 2;
-    }
+    canvas.width = elCanvasContainer.clientWidth;
+    canvas.height = imageObj.naturalHeight;
 
-    // Happy path - keep aspect ratio
-    else {
-        renderableHeight = canvas.height;
-        renderableWidth = canvas.width;
-        xStart = 0;
-        yStart = 0;
-    }
-    // console.log('x start, y start', xStart, yStart);
-    gMeme.imgStartX = xStart;
-    gMeme.imgStartY = yStart;
-    gMeme.imgEndX = renderableWidth;
-    gMeme.imgEndY = renderableHeight;
-    gCtx.drawImage(imageObj, xStart, yStart, renderableWidth, renderableHeight);
+    gCtx.drawImage(imageObj, 0, 0, canvas.width, imageObj.naturalHeight * ratio);
 };
 
 function createMeme() {

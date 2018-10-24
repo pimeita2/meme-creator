@@ -1,6 +1,6 @@
 .imgModal-wrapper {
     height: 100vh;
-    width: 100vw;
+    width: 100%;
     background-color: rgba(0, 0, 0, 0.301);
     position: fixed;
     z-index: -1;
@@ -16,11 +16,10 @@
 }
 
 .modalContent {
-    height: fit-content;
+    height: 80%;
     margin-bottom: 20px;
     min-width: 80vw;
-    max-width: 100vw;
-    max-height: 80vh;
+    min-height: 80vh;
     background-color: antiquewhite;
     cursor: auto;
 }
@@ -31,23 +30,26 @@
 }
 
 .modalBody {
-    max-height: calc(90vh - 100px);
+    height: calc(100% - 100px);
 }
 
 .modalImg {
     width: 100%;
     margin-top: 10px;
+    height: 75%;
 }
 
 canvas {
-    width: 90%;
-    height: 90%;
+    /* width: 90%; */
+    /* height: 90%; */
+    background: black;
     border-radius: 10px;
 }
 
 .text-container {
     margin: 10px 0;
     width: 100%;
+    height: 20%;
 }
 
 .text-container button {

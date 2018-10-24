@@ -33,7 +33,7 @@ function onImgClick(elImg) {
 
 function onSetFilter(statusFilter) {
     // console.log(statusFilter);
-    setFilter(statusFilter.toLowerCase());
+    setFilter(statusFilter);
     // changeCurrentFilterDisplay(elFilter);
     renderGallery();
 }
@@ -51,13 +51,11 @@ function onFontBtnClick() {
 }
 
 function createCanvas() {
-    var elModalImg = document.querySelector('.modalImg');
-    elModalImg.innerHTML = `<canvas> </canvas>`;
+    elCanvasContainer.innerHTML = `<canvas> </canvas>`;
     gCanvas = document.querySelector('canvas');
     gCtx = gCanvas.getContext('2d');
+    console.dir(elCanvasContainer)
 
-    gCanvas.height = gCanvas.offsetHeight;
-    gCanvas.width = gCanvas.offsetWidth;
     /// todo clean canvas
 }
 
@@ -118,7 +116,7 @@ function deleteText() {
     resetModalTxtInput();
 }
 
-function clearValue(elInput){
+function clearValue(elInput) {
     elInput.value = '';
 }
 
