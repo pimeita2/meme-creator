@@ -13,7 +13,7 @@ function renderGallery() {
 
     strHTML = imgs.map((img, idx) => {
         return `
-        <div class="item item${idx + 1} flex justify-center align-center" >
+        <div class="item item${idx + 1}" >
             <img src="${img.url}" onclick="onImgClick(this)"/>
         </div>        
         `

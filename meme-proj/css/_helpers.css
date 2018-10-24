@@ -35,3 +35,7 @@
 .float-left {
     float: left;
 }
+
+.grid {
+    display: grid;
+}

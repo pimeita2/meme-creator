@@ -6,6 +6,7 @@
 @import url('../css/_main_content.css');
 @import url('../css/_helpers.css');
 @import url('../css/_img_modal.css');
+@import url('../css/beehive.css');
 
 /* reset default settings */
 * {
@@ -13,15 +14,18 @@
     /* background-size: contain;
     background-position: center; */
 }
+html {
+    max-width: 95%;
+    background-image: linear-gradient(white, rgb(206, 201, 201), white);
+    font-size: 12px;
+}
 
 body, html {
     margin: 0;
 }
 
 body {
-    min-height: 100vh;
-    min-width: 100vw;
-    background-color: antiquewhite;
+    width: 96%;
 }
 
 img {
@@ -48,6 +52,12 @@ ul, li {
     margin: 0;
     padding: 0;
     list-style-type: none;
+}
+
+@media (min-width: 695px) {
+    html {
+        font-size: 18px;
+    }
 }
 
 
