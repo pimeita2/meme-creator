@@ -4,7 +4,6 @@ const KEY_IMGS = 'images';
 
 var gImgs;
 var gImgsFilter = 'all';
-var gCurrImg = {};
 
 function createImg(url, keyWords, ) {
     return {
@@ -32,8 +31,7 @@ function createImgs() {
 }
 
 function updateCurrImg(elImg) {
-    gCurrImg.imgElement = elImg;
-    // console.log(gCurrImg);
+    gMeme.imgElement = elImg;
 }
 
 function addImg(img) {

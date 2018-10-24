@@ -17,16 +17,17 @@
         <h2>Get your face on a meme!</h2>
 
         <nav class="main-nav">
-            <a href="#">Filter</a>
-            <ul class="filterOpts">
-                <li data-trans="filter-all" onclick="onSetFilter(this.innerText, this)">all</li>
-                <li data-trans="filter-happy" onclick="onSetFilter(this.innerText, this)">happy</li>
-                <li data-trans="filter-crazy" onclick="onSetFilter(this.innerText, this)">crazy</li>
-                <li data-trans="filter-sarcastic" onclick="onSetFilter(this.innerText, this)">sarcastic</li>
-                <li data-trans="filter-sad" onclick="onSetFilter(this.innerText, this)">sad</li>
-                <li data-trans="filter-animal" onclick="onSetFilter(this.innerText, this)">animals</li>
-                <li data-trans="filter-cute" onclick="onSetFilter(this.innerText, this)">cute</li>
-            </ul>
+            <span>Search by Keyword: </span>
+            <input list="filters" name="filters" oninput="onSetFilter(this.value)" value="all" onclick="clearValue(this)">
+            <datalist id="filters">
+                <option value="all" data-trans="filter-all">all</option>
+                <option value="happy" data-trans="filter-all">happy</option>
+                <option value="crazy" data-trans="filter-all">crazy</option>
+                <option value="sarcastic" data-trans="filter-all">sarcastic</option>
+                <option value="sad" data-trans="filter-all">sad</option>
+                <option value="animal" data-trans="filter-all">animals</option>
+                <option value="cute" data-trans="filter-all">cute</option>
+            </datalist>
         </nav>
     </header>
 
@@ -66,6 +67,7 @@
                             </ul>
                         </span>
                        
+
                         <button onclick="toggleShadow(event)"><i class="fas fa-highlighter on-off"></i></button>
 
                         <div class="alignText flex">

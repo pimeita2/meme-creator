@@ -31,11 +31,11 @@ function onImgClick(elImg) {
     openModal();
 }
 
-function onSetFilter(statusFilter, elFilter) {
-    console.log(statusFilter);
+function onSetFilter(statusFilter) {
+    // console.log(statusFilter);
     setFilter(statusFilter.toLowerCase());
-    changeCurrentFilterDisplay(elFilter);
-    renderImgs();
+    // changeCurrentFilterDisplay(elFilter);
+    renderGallery();
 }
 
 function changeCurrentFilterDisplay(elFilter) {
@@ -104,21 +104,20 @@ function onChangeFontSize(sym) {
 
 function renderMeme() {
     renderCanvas();
-    drawImgOnCanvasByRatio(gCanvas, gCurrImg.imgElement);
+    drawImgOnCanvasByRatio(gCanvas, gMeme.imgElement);
     var txt = gMeme.lines[0];
     gCtx.fillStyle = txt.color;
     gCtx.font = `${txt.size}px ${txt.font}`;
-    gCtx.textAlign = txt.align;
-    gCtx.fillText(txt.str, 250, 30);
-    (txt.shadow) ? createTextShadow() : deleteTextShadow()
-
+    gCtx.fillText(txt.str, gMeme.imgStartX + 20, gMeme.imgStartY + 30);
 }
 
 function deleteText() {
     renderCanvas();
-    drawImgOnCanvasByRatio(gCanvas, gCurrImg.imgElement);
+    drawImgOnCanvasByRatio(gCanvas, gMeme.imgElement);
     resetModalTxtInput();
 }
 
-
+function clearValue(elInput){
+    elInput.value = '';
+}
 
