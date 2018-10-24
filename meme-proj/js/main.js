@@ -3,7 +3,6 @@
 
 function init() {
     // console.log('controler on');
-    initCanvas();
     renderGallery();
     console.log(gImgs)
 }
@@ -26,7 +25,7 @@ function renderGallery() {
 function onImgClick(elImg) {
     // console.log(elImg);
     updateCurrImg(elImg);
-    renderCanvas();
+    renderCanvas(); // make the render canvas another function that cleans the canvas
     drawImg(elImg);
     resetModalTxtInput();
     openModal();
@@ -48,9 +47,45 @@ function changeCurrentFilterDisplay(elFilter) {
 }
 // move to modal main
 function onFontBtnClick() {
-    
+
 }
 
+function createCanvas() {
+    var elModalImg = document.querySelector('.modalImg');
+    elModalImg.innerHTML = `<canvas> </canvas>`;
+    gCanvas = document.querySelector('canvas');
+    gCtx = gCanvas.getContext('2d');
+
+    gCanvas.height = gCanvas.offsetHeight;
+    gCanvas.width = gCanvas.offsetWidth;
+    /// todo clean canvas
+}
+
+function openModal() {
+    document.querySelector('.imgModal-wrapper').classList.add('open');
+}
+// should be in main
+function closeModal(elModal) {
+    elModal.classList.remove('open');
+}
+
+function resetModalTxtInput() {
+    document.querySelector('input[type="text"]').value = '';
+}
+
+function modalContentClicked(ev) {
+    ev.stopPropagation();
+}
+
+function drawImg(elImg) {
+    createCanvas(); // create canvas should be called once to reset the canvas settings onload
+    drawImgOnCanvasByRatio(gCanvas, elImg);
+}
+
+function onWriteText(str) {
+    writeText(str)
+    renderMeme();
+}
 
 
 
