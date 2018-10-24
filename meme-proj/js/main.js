@@ -65,7 +65,8 @@ function openModal() {
     document.querySelector('.imgModal-wrapper').classList.add('open');
 }
 // should be in main
-function closeModal(elModal) {
+function closeModal() {
+    var elModal = document.querySelector('.imgModal-wrapper')
     elModal.classList.remove('open');
 }
 

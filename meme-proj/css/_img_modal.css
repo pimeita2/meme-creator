@@ -1,7 +1,7 @@
 .imgModal-wrapper {
     height: 100vh;
     width: 100%;
-    background-color: rgba(0, 0, 0, 0.301);
+    background-color: rgba(0, 0, 0, 0.644);
     position: fixed;
     z-index: -1;
     left: -9999px;
@@ -25,13 +25,44 @@
     margin-bottom: 20px;
     min-width: 80vw;
     min-height: 80vh;
-    background-color: antiquewhite;
+    background-color: rgb(209, 199, 199);
     cursor: auto;
+    border: 1px solid rgba(0, 0, 0, 0.596);
+}
+
+.modalContent button {
+    background-color: cadetblue;
+    border: 1px solid rgba(0, 0, 0, 0.644);
+    min-width: 2rem;
+    transition: .3s;
+    box-shadow: 0px 6px 34px -5px #000000;
+}
+
+.modalContent button:hover {
+    background-color: rgb(77, 129, 131);
+    transform: scale(0.95);
 }
 
 .modalHeader {
     height: 10%;
-    background-color: brown;
+    background-color: black;
+    text-align: center;
+}
+
+.close-modal-btn {
+    margin-top: 10px;
+    background-color: aquamarine;
+    border: none;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    padding: 10px;
+    font-size: 1.2rem;
+    transition: .3s;
+    border-radius: 30%;
+}
+
+.close-modal-btn:hover {
+    background-color: rgb(102, 206, 171);
+    transform: scale(0.95);
 }
 
 .modalBody {
@@ -63,6 +94,11 @@ canvas {
     margin-bottom: 10px;
     width: 90%;
     letter-spacing: 0.5rem;
+    cursor: pointer;
+}
+
+.text-container input[type="color"] {
+    cursor: pointer;
 }
 
 .alignText {
@@ -82,7 +118,7 @@ button.delete {
     position: absolute;
     align-self: flex-end;
     top: 80%;
-    background-color: brown;
+    background-color: rgb(124, 203, 206);
     color: white;
     padding: 5px;
     z-index: -1;
@@ -108,9 +144,17 @@ button.delete {
 
 .fonts-btn {
     cursor: pointer;
-    background-color: lightgray;
-    border: 1px solid black;
+    background-color: cadetblue;
+    border: 1px solid rgba(0, 0, 0, 0.644);
+    padding: 1px;
     min-width: 25px;
-    min-height: 22px;
+    min-height: 20px;
     text-align: center;
+    transition: .3s;
+    box-shadow: 0px 6px 34px -5px #000000;
+}
+
+.fonts-btn:hover {
+    background-color: rgb(77, 129, 131);
+    transform: scale(0.95);
 }
