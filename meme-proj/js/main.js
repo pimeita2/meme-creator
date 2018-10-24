@@ -31,11 +31,11 @@ function onImgClick(elImg) {
     openModal();
 }
 
-function onSetFilter(statusFilter, elFilter) {
-    console.log(statusFilter);
+function onSetFilter(statusFilter) {
+    // console.log(statusFilter);
     setFilter(statusFilter.toLowerCase());
-    changeCurrentFilterDisplay(elFilter);
-    renderImgs();
+    // changeCurrentFilterDisplay(elFilter);
+    renderGallery();
 }
 
 function changeCurrentFilterDisplay(elFilter) {
@@ -118,5 +118,7 @@ function deleteText() {
     resetModalTxtInput();
 }
 
-
+function clearValue(elInput){
+    elInput.value = '';
+}
 
