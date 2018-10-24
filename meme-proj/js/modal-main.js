@@ -43,6 +43,7 @@ function modalContentClicked(ev) {
     ev.stopPropagation();
 }
 // should be in main
+
 function drawImg(elImg) {
     fitImgByRatio(gCanvas, elImg);
 }
@@ -106,6 +107,9 @@ function createMeme() {
     }
 }
 // should be in main
+//////////////////////////////////////
+// need to seporate to service modal//
+
 function onWriteText(val) {
     gMeme.texts[0].text = val;
     renderMeme();
@@ -148,37 +152,71 @@ function alignText(val) {
     }
 }
 // should be in main
+
+function createMeme() {
+    return {
+        selectedImgId: 5,
+        texts: [
+            {
+                text: '',
+                font: 'Arial',
+                size: 20,
+                align: 'left',
+                color: '#ff0000',
+                shadow: false,
+            }
+        ]
+    }
+}
+
+function alignText(val) {
+    console.log(val);
+    var txt = gMeme.texts[0].align;
+    txt = val;
+    console.log(txt);
+}
+
 function renderMeme() {
     createCanvas();
     fitImgByRatio(gCanvas, gCurrImg.imgElement);
     var txt = gMeme.texts[0];
+    gCtx.textAlign = txt.align;
     gCtx.fillStyle = txt.color;
     gCtx.font = `${txt.size}px ${txt.font}`
     gCtx.fillText(txt.text, gCurrImg.canvasPosX + 20, gCurrImg.canvasPosY + 30);
-    // console.log(txt)
 }
 // should be in service
 function createShadow() {
+}
+
+function createTextShadow() {
     gCtx.shadowOffsetX = 3;
     gCtx.shadowOffsetY = 3;
     gCtx.shadowColor = "rgba(0,0,0,0.3)";
     gCtx.shadowBlur = 4;
 }
 
+function deleteTextShadow() {
+    gCtx.shadowOffsetX = 0;
+    gCtx.shadowOffsetY = 0;
+    gCtx.shadowColor = "rgba(0,0,0,0)";
+    gCtx.shadowBlur = 0;
+}
 
 // should be in main
+function toggleShadow(ev) {
+    // console.log(ev);
+    // document.querySelector('on-off')
+    gMeme.texts[0].shadow = !gMeme.texts[0].shadow
+    console.log(gMeme.texts[0].shadow);
+
+    // var txt = gMeme.texts[0];
+    // (txt.shadow) ? createTextShadow() : deleteTextShadow()
+}
+
 function deleteText() {
     createCanvas();
     fitImgByRatio(gCanvas, gCurrImg.imgElement);
     resetModalTxtInput();
 }
-
-        // function toggleShadow(){
-        //     if (gMeme.texts[0].shadow === true){
-        //         createShadow();
-        //         renderMeme()
-        //     } 
-        //     // else
-        //     // (gMeme.texts[0].shadow === false)
-        // }
 
