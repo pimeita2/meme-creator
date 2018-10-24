@@ -66,31 +66,22 @@ function createMeme() {
     }
 }
 
-
 function writeText(str) {
     gMeme.lines[0].str = str;
 }
-// should be in main
-function onColorChange(val) {
-    gMeme.lines[0].color = val;
-    renderMeme();
-}
-// should be in main
-function onFontChange(val) {
-    gMeme.lines[0].font = val;
-    renderMeme();
+
+function changeColor(color) {
+    gMeme.lines[0].color = color;
 }
 
-function increaseFontSize() {
-    gMeme.lines[0].size += 1;
-    renderMeme();
+function changeFont(font) {
+    gMeme.lines[0].font = font;
 }
-//  unite both funcs ^ v and put them on modal-service. make a main func that gives the function their value
-function decreaseFontSize() {
-    gMeme.lines[0].size -= 1;
-    renderMeme();
+
+function changeFontSize(sym) {
+    (sym === '+') ? gMeme.lines[0].size++ : gMeme.lines[0].size--;
 }
-// should be in modal-service
+
 function alignText(val) {
     // console.log(val);
     if (val === 'left') {
@@ -114,16 +105,8 @@ function alignText(val) {
     console.log(txt);
 }
 
-function renderMeme() {
-    renderCanvas();
-    drawImgOnCanvasByRatio(gCanvas, gCurrImg.imgElement);
-    var txt = gMeme.lines[0];
-    gCtx.textAlign = txt.align;
-    gCtx.fillStyle = txt.color;
-    gCtx.font = `${txt.size}px ${txt.font}`;
-    gCtx.fillText(txt.str, gCurrImg.canvasPosX + 20, gCurrImg.canvasPosY + 30);
-}
-// should be in service
+
+
 function createShadow() {
 }
 
@@ -152,9 +135,5 @@ function toggleShadow(ev) {
     // (txt.shadow) ? createTextShadow() : deleteTextShadow()
 }
 
-function deleteText() {
-    renderCanvas();
-    drawImgOnCanvasByRatio(gCanvas, gCurrImg.imgElement);
-    resetModalTxtInput();
-}
+
 

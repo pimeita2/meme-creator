@@ -87,5 +87,36 @@ function onWriteText(str) {
     renderMeme();
 }
 
+function onColorChange(color) {
+    changeColor(color);
+    renderMeme();
+}
+
+function onFontChange(font) {
+    changeFont(font);
+    renderMeme();
+}
+
+function onChangeFontSize(sym) {
+    changeFontSize(sym);
+    renderMeme();
+}
+
+function renderMeme() {
+    renderCanvas();
+    drawImgOnCanvasByRatio(gCanvas, gCurrImg.imgElement);
+    var txt = gMeme.lines[0];
+    gCtx.textAlign = txt.align;
+    gCtx.fillStyle = txt.color;
+    gCtx.font = `${txt.size}px ${txt.font}`;
+    gCtx.fillText(txt.str, gCurrImg.canvasPosX + 20, gCurrImg.canvasPosY + 30);
+}
+
+function deleteText() {
+    renderCanvas();
+    drawImgOnCanvasByRatio(gCanvas, gCurrImg.imgElement);
+    resetModalTxtInput();
+}
+
 
 

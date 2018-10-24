@@ -56,8 +56,8 @@
                         <button onclick="deleteText()" class="delete"><i class="far fa-trash-alt"></i></button>
                         <input type="color" value="#ff0000" onchange="onColorChange(this.value)">
                         <!-- <button onclick="changeTextColor()">Col</button> -->
-                        <button onclick="increaseFontSize()">+</button>
-                        <button onclick="decreaseFontSize()">-</button>
+                        <button onclick="onChangeFontSize('+')">+</button>
+                        <button onclick="onChangeFontSize('-')">-</button>
                         <span class="fonts flex justify-center" onchange="onFontBtnClick()"><i class="fas fa-font"></i>
                             <ul class="font-list">
                                 <li onclick="onFontSelect(this.innerText)">Arial</li>
