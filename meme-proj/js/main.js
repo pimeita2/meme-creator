@@ -108,7 +108,9 @@ function renderMeme() {
     var txt = gMeme.lines[0];
     gCtx.fillStyle = txt.color;
     gCtx.font = `${txt.size}px ${txt.font}`;
-    gCtx.fillText(txt.str, gMeme.imgStartX + 20, gMeme.imgStartY + 30);
+    (txt.shadow)? createTextShadow() : deleteTextShadow();
+    gCtx.textAlign = txt.align;
+    gCtx.fillText(txt.str, 270, 30);
 }
 
 function deleteText() {
@@ -117,7 +119,7 @@ function deleteText() {
     resetModalTxtInput();
 }
 
-function clearValue(elInput){
+function clearValue(elInput) {
     elInput.value = '';
 }
 

@@ -57,8 +57,8 @@ function createMeme() {
             {
                 str: '',
                 font: 'Arial',
-                size: 20,
-                align: 'left',
+                size: 30,
+                align: 'center',
                 color: '#ff0000',
                 shadow: false,
             }
@@ -90,7 +90,7 @@ function alignText(val) {
 function createTextShadow() {
     gCtx.shadowOffsetX = 3;
     gCtx.shadowOffsetY = 3;
-    gCtx.shadowColor = "rgba(0,0,0,0.3)";
+    gCtx.shadowColor = "rgba(0,0,0,0.9)";
     gCtx.shadowBlur = 4;
 }
 
@@ -101,6 +101,7 @@ function deleteTextShadow() {
     gCtx.shadowBlur = 0;
 }
 
-function toggleShadow(ev) {
+function toggleShadow() {
     gMeme.lines[0].shadow = !gMeme.lines[0].shadow;
+    renderMeme()
 }
