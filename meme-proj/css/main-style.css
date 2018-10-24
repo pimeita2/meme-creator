@@ -1,6 +1,8 @@
 /* Main */
 
 /* main content */
+
+@import url('../css/_header.css');
 @import url('../css/_main_content.css');
 @import url('../css/_helpers.css');
 @import url('../css/_img_modal.css');
@@ -32,6 +34,22 @@ img {
 button {
     cursor: pointer;
 }
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul, li {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
 
 
 
