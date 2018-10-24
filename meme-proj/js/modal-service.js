@@ -48,16 +48,22 @@ function drawImgOnCanvasByRatio(canvas, imageObj) {
     // gMeme.imgEndX = renderableWidth;
     // gMeme.imgEndY = renderableHeight;
     var elCanvasContainer = document.querySelector('.modalImg');
-    var ratio;
     var imgHeight = imageObj.naturalHeight;
     var imgWidth = imageObj.naturalWidth;
 
-    (imgHeight > imgWidth) ? ratio = imgHeight / imgWidth : ratio = imgWidth / imgHeight;
-
+    // (imgHeight > imgWidth) ? ratio = imgHeight / imgWidth : ratio = imgWidth / imgHeight;
+    var ratio;
     canvas.width = elCanvasContainer.clientWidth;
-    canvas.height = imageObj.naturalHeight;
+    canvas.height = elCanvasContainer.clientHeight;
+    if (canvas.width < imgWidth) {
+        ratio = canvas.width / imgWidth;
+    } else {
+        ratio = imgWidth / canvas.width;
+    }
 
-    gCtx.drawImage(imageObj, 0, 0, canvas.width, imageObj.naturalHeight * ratio);
+    console.log(ratio);
+
+    gCtx.drawImage(imageObj, 0, 0, canvas.width, imgHeight * ratio);
 };
 
 function createMeme() {

@@ -51,6 +51,7 @@ function onFontBtnClick() {
 }
 
 function createCanvas() {
+    var elCanvasContainer = document.querySelector('.modalImg');
     elCanvasContainer.innerHTML = `<canvas> </canvas>`;
     gCanvas = document.querySelector('canvas');
     gCtx = gCanvas.getContext('2d');
