@@ -106,10 +106,12 @@ function renderMeme() {
     renderCanvas();
     drawImgOnCanvasByRatio(gCanvas, gCurrImg.imgElement);
     var txt = gMeme.lines[0];
-    gCtx.textAlign = txt.align;
     gCtx.fillStyle = txt.color;
     gCtx.font = `${txt.size}px ${txt.font}`;
-    gCtx.fillText(txt.str, gCurrImg.canvasPosX + 20, gCurrImg.canvasPosY + 30);
+    gCtx.textAlign = txt.align;
+    gCtx.fillText(txt.str, 250, 30);
+    (txt.shadow) ? createTextShadow() : deleteTextShadow()
+
 }
 
 function deleteText() {

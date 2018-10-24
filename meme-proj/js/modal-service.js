@@ -83,31 +83,8 @@ function changeFontSize(sym) {
 }
 
 function alignText(val) {
-    // console.log(val);
-    if (val === 'left') {
-        gMeme.lines[0].align = 'left'
-        gCtx.textAlign = 'left';
-    }
-    if (val === 'center') {
-        gMeme.lines[0].align = 'center';
-        gCtx.textAlign = 'center';
-    }
-    if (val === 'right') {
-        gMeme.lines[0].aling = 'right';
-        gCtx.textAlign = 'right';
-    }
-}
-
-function alignText(val) {
-    console.log(val);
-    var txt = gMeme.lines[0].align;
-    txt = val;
-    console.log(txt);
-}
-
-
-
-function createShadow() {
+    gMeme.lines[0].align = val;
+    renderMeme();
 }
 
 function createTextShadow() {
@@ -124,16 +101,6 @@ function deleteTextShadow() {
     gCtx.shadowBlur = 0;
 }
 
-// should be in main
 function toggleShadow(ev) {
-    // console.log(ev);
-    // document.querySelector('on-off')
     gMeme.lines[0].shadow = !gMeme.lines[0].shadow;
-    console.log(gMeme.lines[0].shadow);
-
-    // var txt = gMeme.texts[0];
-    // (txt.shadow) ? createTextShadow() : deleteTextShadow()
 }
-
-
-
