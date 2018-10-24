@@ -15,7 +15,7 @@ function createImg(url, keyWords, ) {
 }
 
 function createImgs() {
-    return gImgs = [
+    gImgs = [
         createImg('./meme-imgs/2.jpg', ['happy']),
         createImg('./meme-imgs/003.jpg', ['crazy', 'sarcastic']),
         createImg('./meme-imgs/004.jpg', ['happy', 'animals']),

@@ -4,12 +4,11 @@
 function init() {
     // console.log('controler on');
     initCanvas();
-    renderImgs();
+    renderGallery();
     console.log(gImgs)
-
 }
 
-function renderImgs() {
+function renderGallery() {
     var imgs = getImgs();
     // console.log(imgs);
     var strHTML = '';
@@ -20,14 +19,14 @@ function renderImgs() {
             <img src="${img.url}" onclick="onImgClick(this)"/>
         </div>        
         `
-    })
-    document.querySelector('.content-container').innerHTML = strHTML.join('');
+    }).join('');
+    document.querySelector('.content-container').innerHTML = strHTML
 }
 
 function onImgClick(elImg) {
     // console.log(elImg);
     updateCurrImg(elImg);
-    createCanvas();
+    renderCanvas();
     drawImg(elImg);
     resetModalTxtInput();
     openModal();
@@ -35,7 +34,7 @@ function onImgClick(elImg) {
 
 function onSetFilter(statusFilter) {
     setFilter(statusFilter);
-    renderImgs();
+    renderGallery();
 }
 
 

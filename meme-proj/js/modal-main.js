@@ -9,8 +9,8 @@ function initCanvas() {
     gMeme = createMeme();
     // renderMeme();
 }
-
-function createCanvas() {
+// ch
+function renderCanvas() {
     var elModalImg = document.querySelector('.modalImg');
     elModalImg.innerHTML = `<canvas> </canvas>`;
     gCanvas = document.querySelector('canvas');
@@ -18,6 +18,7 @@ function createCanvas() {
 
     gCanvas.height = gCanvas.offsetHeight;
     gCanvas.width = gCanvas.offsetWidth;
+    /// todo clean canvas
 }
 
 function openModal() {
@@ -135,7 +136,7 @@ function alignText(val) {
 }
 
 function renderMeme() {
-    createCanvas();
+    renderCanvas();
     fitImgByRatio(gCanvas, gCurrImg.imgElement);
     var txt = gMeme.texts[0];
     gCtx.textAlign = txt.align;
@@ -169,7 +170,7 @@ function toggleShadow(ev) {
 }
 
 function deleteText() {
-    createCanvas();
+    renderCanvas();
     fitImgByRatio(gCanvas, gCurrImg.imgElement);
     resetModalTxtInput();
 }
