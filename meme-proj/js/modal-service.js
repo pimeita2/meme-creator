@@ -8,49 +8,8 @@ var gMeme = createMeme();
 function renderCanvas() {
 }
 
-// should be in modal - service
+
 function drawImgOnCanvasByRatio(canvas, imageObj) {
-    // var imageAspectRatio = imageObj.naturalWidth / imageObj.naturalHeight;
-    // var canvasAspectRatio = canvas.width / canvas.height;
-    // var renderableHeight, renderableWidth, xStart, yStart;
-
-    // var imgWidth = imageObj.naturalWidth;
-    // var imgHeight = imageObj.naturalHeight;
-
-    // // If image's aspect ratio is less than canvas's we fit on height
-    // // and place the image centrally along width
-    // if (imageAspectRatio < canvasAspectRatio) {
-    //     renderableHeight = canvas.height;
-    //     renderableWidth = imgWidth * (renderableHeight / imgHeight);
-    //     xStart = (canvas.width - renderableWidth) / 2;
-    //     yStart = 0;
-    // }
-
-    // // If image's aspect ratio is greater than canvas's we fit on width
-    // // and place the image centrally along height
-    // else if (imageAspectRatio > canvasAspectRatio) {
-    //     renderableWidth = canvas.width
-    //     renderableHeight = imgHeight * (renderableWidth / imgWidth);
-    //     xStart = 0;
-    //     yStart = (canvas.height - renderableHeight) / 2;
-    // }
-
-    // // Happy path - keep aspect ratio
-    // else {
-    //     renderableHeight = canvas.height;
-    //     renderableWidth = canvas.width;
-    //     xStart = 0;
-    //     yStart = 0;
-    // }
-    // // console.log('x start, y start', xStart, yStart);
-    // gMeme.imgStartX = xStart;
-    // gMeme.imgStartY = yStart;
-    // gMeme.imgEndX = renderableWidth;
-    // gMeme.imgEndY = renderableHeight;
-    // (imgHeight > imgWidth) ? ratio = imgHeight / imgWidth : ratio = imgWidth / imgHeight;
-    // if (canvas.height > elCanvasContainer.clientHeight) canvas.height = elCanvasContainer.clientHeight;
-
-    // console.log(ratio);
 
     var elCanvasContainer = document.querySelector('.modalImg');
     var imgHeight = imageObj.naturalHeight;
@@ -66,143 +25,27 @@ function drawImgOnCanvasByRatio(canvas, imageObj) {
     gCtx.drawImage(imageObj, 0, 0, canvas.width, imgHeight * ratio);
 };
 
+function addNewLineToMeme(line){
+    gMeme.lines.push(line);
+}
+function createLine(){
+    return {
+        str: '',
+        font: 'Impact',
+        size: 30,
+        align: 'center',
+        color: '#ff0000',
+        // x:0,
+        // y:60,
+        shadow: false,
+    }
+}
+
 function createMeme() {
     return {
-        // selectedImgId: 5,
         selectedLine: 0,
         lines: [
-            {
-                str: '',
-                font: 'Impact',
-                size: 30,
-                align: 'center',
-                color: '#ff0000',
-                // x:0,
-                // y:60,
-                shadow: false,
-            },
-            {
-                str: '',
-                font: 'Impact',
-                size: 30,
-                align: 'center',
-                color: '#ff0000',
-                // x:0,
-                // y:120,
-                shadow: false,
-            },
-            {
-                str: '',
-                font: 'Impact',
-                size: 30,
-                align: 'center',
-                color: '#ff0000',
-                shadow: false,
-            },
-            {
-                str: '',
-                font: 'Impact',
-                size: 30,
-                align: 'center',
-                color: '#ff0000',
-                shadow: false,
-            },
-            {
-                str: '',
-                font: 'Impact',
-                size: 30,
-                align: 'center',
-                color: '#ff0000',
-                shadow: false,
-            },
-            {
-                str: '',
-                font: 'Impact',
-                size: 30,
-                align: 'center',
-                color: '#ff0000',
-                shadow: false,
-            },
-            {
-                str: '',
-                font: 'Impact',
-                size: 30,
-                align: 'center',
-                color: '#ff0000',
-                shadow: false,
-            },
-            {
-                str: '',
-                font: 'Impact',
-                size: 30,
-                align: 'center',
-                color: '#ff0000',
-                shadow: false,
-            },
-            {
-                str: '',
-                font: 'Impact',
-                size: 30,
-                align: 'center',
-                color: '#ff0000',
-                shadow: false,
-            },
-            {
-                str: '',
-                font: 'Impact',
-                size: 30,
-                align: 'center',
-                color: '#ff0000',
-                shadow: false,
-            },
-            {
-                str: '',
-                font: 'Impact',
-                size: 30,
-                align: 'center',
-                color: '#ff0000',
-                shadow: false,
-            },
-            {
-                str: '',
-                font: 'Impact',
-                size: 30,
-                align: 'center',
-                color: '#ff0000',
-                shadow: false,
-            },
-            {
-                str: '',
-                font: 'Impact',
-                size: 30,
-                align: 'center',
-                color: '#ff0000',
-                shadow: false,
-            },
-            {
-                str: '',
-                font: 'Impact',
-                size: 30,
-                align: 'center',
-                color: '#ff0000',
-                shadow: false,
-            },
-            {
-                str: '',
-                font: 'Impact',
-                size: 30,
-                align: 'center',
-                color: '#ff0000',
-                shadow: false,
-            },
-            {
-                str: '',
-                font: 'Impact',
-                size: 30,
-                align: 'center',
-                color: '#ff0000',
-                shadow: false,
-            }
+            createLine(),
         ]
     }
 }
