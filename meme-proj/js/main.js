@@ -4,7 +4,6 @@ const LINE_HEIGHT = 60;
 
 
 function init() {
-    // console.log('controler on');
     renderGallery();
     console.log(gImgs)
 }
@@ -40,20 +39,17 @@ function canvasClicked(ev) {
 }
 
 function onImgClick(elImg) {
-    // console.log(elImg);
     updateCurrImg(elImg);
     createCanvas();
     drawImg(elImg);
     renderMeme();
-    renderCanvas(); // make the render canvas another function that cleans the canvas
+    renderCanvas(); 
     resetModalTxtInput();
     openModal();
 }
 
 function onSetFilter(statusFilter) {
-    // console.log(statusFilter);
     setFilter(statusFilter);
-    // changeCurrentFilterDisplay(elFilter);
     renderGallery();
 }
 
@@ -73,18 +69,16 @@ function createCanvas() {
     elCanvasContainer.innerHTML = `<canvas onclick="canvasClicked(event)"> </canvas>`;
     gCanvas = document.querySelector('canvas');
     gCtx = gCanvas.getContext('2d');
-    // console.dir(elCanvasContainer);
-
-    /// todo clean canvas
 }
 
 function openModal() {
     document.querySelector('.imgModal-wrapper').classList.add('open');
 }
-// should be in main
+
 function closeModal() {
     var elModal = document.querySelector('.imgModal-wrapper')
     elModal.classList.remove('open');
+    gMeme = createMeme();
 }
 
 function resetModalTxtInput() {
@@ -96,7 +90,6 @@ function modalContentClicked(ev) {
 }
 
 function drawImg(elImg) {
-    // createCanvas(); // create canvas should be called once to reset the canvas settings onload
     drawImgOnCanvasByRatio(gCanvas, elImg);
 }
 
@@ -125,7 +118,6 @@ function renderMeme() {
     drawImgOnCanvasByRatio(gCanvas, gMeme.imgElement);
     for (var i = 0; i < gMeme.lines.length; i++) {
         updateMarkedLine();
-        // addFrameToMarkedLine();
         var txt = gMeme.lines[i];
         gCtx.fillStyle = txt.color;
         gCtx.font = `${txt.size}px ${txt.font}`;
@@ -135,15 +127,9 @@ function renderMeme() {
     }
 }
 
-
 function deleteText() {
-    renderCanvas();
-    drawImgOnCanvasByRatio(gCanvas, gMeme.imgElement);
+    getCurrLineByClick(clickX, clickY)
     resetModalTxtInput();
-}
-
-function clearValue(elInput) {
-    elInput.value = '';
 }
 
 function addFrameToMarkedLine() {

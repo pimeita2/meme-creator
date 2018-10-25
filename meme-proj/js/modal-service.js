@@ -11,7 +11,6 @@ function getMemeState() {
 function renderCanvas() {
 }
 
-
 function drawImgOnCanvasByRatio(canvas, imageObj) {
 
     var elCanvasContainer = document.querySelector('.modalImg');
@@ -23,11 +22,9 @@ function drawImgOnCanvasByRatio(canvas, imageObj) {
 
     canvas.width = elCanvasContainer.clientWidth - 10;
     canvas.height = imgHeight * ratio;
-
-
+    
     gCtx.drawImage(imageObj, 0, 0, canvas.width, imgHeight * ratio);
 };
-
 
 function getCurrLineByClick(clickX, clickY) {
     return gMeme.lines.find((line, idx) => {
@@ -59,13 +56,12 @@ function createLine(yStart = 30, yEnd = 0) {
         xEnd: document.querySelector('.modalImg').clientWidth - 10,
         shadow: false,
     })
-    console.log(gMeme.lines[gMeme.lines.length-1])
 }
 
 function createMeme() {
     return {
         selectedLine: 0,
-        lines: [{
+        lines: [{                // this is a defalt first line if not clicked
             str: '',
             font: 'Impact',
             size: 30,
@@ -126,9 +122,18 @@ function updateMarkedLine(lineIdx = 0) {
         gMeme.lines[i].isMarked = !gMeme.lines[i].isMarked;
     }
     gMeme.lines[lineIdx].isMarked = true;
-    //    console.log(lineIdx);
 }
 
 function getSelectedLine() {
     return gMeme.selectedLine;
+}
+
+function downloadCanvas(elLink) {
+    console.log(gCanvas.toDataURL())
+    elLink.href = gCanvas.toDataURL()
+    elLink.download = 'my-canvas.jpg'
+}
+
+function clearCanvas() {
+   gCtx.clearRect(0, 0, gCanvas.width, gCanvas.height)
 }
