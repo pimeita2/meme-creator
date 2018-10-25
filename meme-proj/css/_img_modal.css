@@ -10,7 +10,6 @@
 
 .imgModal-wrapper>* {
     font-family: Impact;
-    /* font-family: Verdana; */
 }
 
 .imgModal-wrapper.open {
@@ -116,46 +115,69 @@ button.delete {
 }
 
 .font-list {
-    position: absolute;
+    position: relative;
     align-self: flex-end;
     top: 80%;
     background-color: rgb(124, 203, 206);
     color: white;
     padding: 5px;
     z-index: -1;
-    min-width: 120px;
+    min-width: 150px;
+    min-height: 30px;
     opacity: 0;
+    top: 120px;
     transition: .3s;
+    border-radius: 5px;
 }
 
 .font-list> * {
-    padding-bottom: 5px;
+    width: 100%;
+    height: 100%;
+    padding-bottom: 10px;
     min-height: 25px;
+    z-index: -1;
 }
 
 .font-list>*:hover {
     color: rgb(228, 228, 228);
-    font-size: 0.9rem;
+    font-size: 0.95rem;
 }
 
 .font-list.open {
     opacity: 1;
     z-index: 2;
+    top: 141px;
 }
 
-.fonts-btn {
+.fonts-btn, .textToolbar>a {
     cursor: pointer;
     background-color: cadetblue;
     border: 1px solid rgba(0, 0, 0, 0.644);
     padding: 1px;
-    min-width: 25px;
-    min-height: 20px;
     text-align: center;
     transition: .3s;
     box-shadow: 0px 6px 34px -5px #000000;
+    height: 20px;
+}
+
+.fonts-btn {
+    width: 36px;   
+}
+
+.fonts-btn i {
+    position: absolute;
+}
+
+.textToolbar>a {
+    margin-right: 10px;
+    padding: 0 5px;
+}
+
+.textToolbar>a:hover {
+    transform: scale(0.95);
+    background-color: rgb(77, 129, 131);
 }
 
 .fonts-btn:hover {
     background-color: rgb(77, 129, 131);
-    transform: scale(0.95);
 }

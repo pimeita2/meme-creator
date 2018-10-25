@@ -105,7 +105,8 @@ function onColorChange(color) {
     renderMeme();
 }
 
-function onFontSelect(font) {
+function onFontSelect(font, ev) {
+    event.stopPropagation();
     changeFont(font);
     renderMeme();
 }
@@ -146,4 +147,12 @@ function addFrameToMarkedLine() {
 
 function onAddLineClick() {
     createLine();
+}
+
+function openAboutUs() {
+    document.querySelector('.about-us').classList.add('about-us-open');
+}
+
+function closeAboutUs() {
+    document.querySelector('.about-us').classList.remove('about-us-open');
 }

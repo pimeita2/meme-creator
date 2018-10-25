@@ -12,6 +12,26 @@
     padding: 5px;
 }
 
+.about {
+    position: absolute;
+    transform: rotate(50deg);
+    width: 200px;
+    top: 45px;
+    right: -50px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 1.5rem;
+    transition: .3s;
+    background-color: white;
+    border: 1px solid #464646;
+    text-transform: uppercase;
+}
+
+.about:hover {
+    font-size: 1.4rem;
+    color: white;
+    background-color: #464646;
+    border: 1px solid white;
+}
 
 
 

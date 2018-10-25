@@ -31,8 +31,8 @@
         </nav>
     </header>
 
+    <button class="about" onclick="openAboutUs()">About us</button>
     <main class="content-container flex wrap">
-
 
     </main>
 
@@ -47,30 +47,30 @@
             <div class="modalBody flex wrap">
 
                 <div class="modalImg">
-                    
+
                 </div>
                 <div class="text-container flex justify-center wrap align-center">
 
                     <input class="text-line" placeholder="Enter text here" type="text" oninput="onWriteText(this.value)">
 
                     <div class="textToolbar flex justify-center align-center">
-                            <a onclick="downloadCanvas(this)" href="#">Download</a>
+                        <a onclick="downloadCanvas(this)" href="#" class="flex align-center">Download</a>
 
 
                         <button onclick="deleteText()" class="delete"><i class="far fa-trash-alt"></i></button>
                         <input id="input-color" type="color" value="#ffffff" onchange="onColorChange(this.value)">
                         <button onclick="onChangeFontSize('+')">+</button>
                         <button onclick="onChangeFontSize('-')">-</button>
-                        <span class="fonts-btn flex justify-center" >
-                            <i class="fas fa-font" onclick="onFontBtnClick()"></i>
+                        <span class="fonts-btn flex justify-center" onclick="onFontBtnClick()">
+                            <i class="fas fa-font"></i>
                             <ul class="font-list">
-                                <li onclick="onFontSelect('Arial')">Arial</li>
-                                <li onclick="onFontSelect('David')">David</li>
-                                <li onclick="onFontSelect('Verdana')">Verdana</li>
-                                <li onclick="onFontSelect('Impact')">Impact (Default)</li>
+                                <li onclick="onFontSelect('Arial', this)">Arial</li>
+                                <li onclick="onFontSelect('David', this)">David</li>
+                                <li onclick="onFontSelect('Verdana', this)">Verdana</li>
+                                <li onclick="onFontSelect('Impact', this)">Impact (Default)</li>
                             </ul>
                         </span>
-                       
+
 
                         <button onclick="toggleShadow()"><i class="fas fa-highlighter on-off"></i></button>
 
@@ -86,7 +86,40 @@
         </div>
     </div>
 
-    <!-- <a class="save-item" onclick="downloadCanvas(this)">Save</a> -->
+    <div class="about-us flex justify-between align-center">
+        <button class="close-about-btn" onclick="closeAboutUs()">Close</button>
+        <div class="meital grid">
+            <div class="about-us-img">
+                <img src="https://scontent.ftlv1-1.fna.fbcdn.net/v/t1.0-9/12670385_10207506115349666_9208209897226808112_n.jpg?_nc_cat=102&_nc_ht=scontent.ftlv1-1.fna&oh=f94180f185d7a24e81d860693021d482&oe=5C4A0989" />
+            </div>
+            <div class="title">
+                <h3 class="fullname">Meital Konon Pinhas</h3>
+                <h4 class="slogan">שכה יהיה לי טוב</h4>
+            </div>
+            <p>We need to type some more stuff to fill this div so... <br>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni
+                molestiae quae repellat placeat voluptas debitis assumenda culpa nostrum adipisci officia, perferendis
+                laboriosam nisi blanditiis officiis quas? Voluptatibus veritatis aperiam ex! Lorem ipsum dolor sit,
+                amet consectetur adipisicing elit. Officia necessitatibus at repellendus perferendis, omnis eos
+                reprehenderit porro cupiditate fugit itaque ex reiciendis eum odio ipsa illo soluta, suscipit animi
+                sed.</p>
+            </div>
+            <div class="bar grid">
+                <div class="about-us-img">
+                        <img src="https://scontent.ftlv1-1.fna.fbcdn.net/v/t1.0-9/27858075_10215491700555198_7744759545590598587_n.jpg?_nc_cat=108&_nc_ht=scontent.ftlv1-1.fna&oh=a6bf396edde2fb609835f70ec78dab8b&oe=5C540738" >
+            </div>
+            <div class="title">
+                <h3 class="fullname">Bar Peled</h3>
+                <h4 class="slogan">שמישהו יפתור אותי מהקנבס</h4>
+            </div>
+            <p>Latin dance instructor, likes languages, music and culture <br>
+                Don't like this canvas' behaviour<br><br>
+                We need to type some more stuff to fill this div so... <br>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto voluptatem, laudantium possimus
+                necessitatibus qui facere rem eius ipsum hic aperiam similique suscipit. Quis provident similique
+                exercitationem omnis accusantium, et vel.</p>
+        </div>
+    </div>
 
     <script src="js/utils-service.js"></script>
     <script src="js/modal-service.js"></script>
