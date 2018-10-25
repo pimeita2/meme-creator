@@ -63,9 +63,3 @@ function getImgs() {
 function setFilter(statusFilter) {
     gImgsFilter = statusFilter;
 }
-
-function downloadCanvas(elLink) {
-    console.log(canvas.toDataURL())
-    elLink.href = canvas.toDataURL()
-    elLink.download = 'my-canvas.jpg'
-}

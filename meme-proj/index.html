@@ -54,9 +54,11 @@
                     <input class="text-line" placeholder="Enter text here" type="text" oninput="onWriteText(this.value)">
 
                     <div class="textToolbar flex justify-center align-center">
+                            <a onclick="downloadCanvas(this)" href="#">Download</a>
+
+
                         <button onclick="deleteText()" class="delete"><i class="far fa-trash-alt"></i></button>
                         <input id="input-color" type="color" value="#ffffff" onchange="onColorChange(this.value)">
-                        <!-- <button onclick="changeTextColor()">Col</button> -->
                         <button onclick="onChangeFontSize('+')">+</button>
                         <button onclick="onChangeFontSize('-')">-</button>
                         <span class="fonts-btn flex justify-center" >
