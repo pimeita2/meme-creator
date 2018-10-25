@@ -16,8 +16,8 @@
         <h1>Meme-Me</h1>
         <h2>Get your face on a meme!</h2>
 
-        <nav class="main-nav grid">
-            <span>Search: </span>
+        <nav class="main-nav">
+            <span>Search by Keyword: </span>
             <input list="filters" name="filters" oninput="onSetFilter(this.value)" value="all" onclick="clearValue(this)">
             <datalist id="filters">
                 <option value="all" data-trans="filter-all">all</option>
@@ -31,17 +31,17 @@
         </nav>
     </header>
 
-    <main class="content-container clear" id="grid">
+    <main class="content-container flex wrap justify-between">
 
 
     </main>
 
 
 
-    <div class="imgModal-wrapper flex wrap justify-center align-center" onclick="closeModal(this)">
+    <div class="imgModal-wrapper flex wrap justify-center align-center" onclick="closeModal()">
         <div class="modalContent" onclick="modalContentClicked(event)">
             <div class="modalHeader">
-
+                <button class="close-modal-btn" onclick="closeModal()">Close</button>
             </div>
 
             <div class="modalBody flex wrap">
@@ -59,11 +59,13 @@
                         <!-- <button onclick="changeTextColor()">Col</button> -->
                         <button onclick="onChangeFontSize('+')">+</button>
                         <button onclick="onChangeFontSize('-')">-</button>
-                        <span class="fonts flex justify-center" onchange="onFontBtnClick()"><i class="fas fa-font"></i>
+                        <span class="fonts-btn flex justify-center" >
+                            <i class="fas fa-font" onclick="onFontBtnClick()"></i>
                             <ul class="font-list">
-                                <li onclick="onFontSelect(this.innerText)">Arial</li>
-                                <li onclick="onFontSelect(this.innerText)">David</li>
-                                <li onclick="onFontSelect(this.innerText)">Times New Roman</li>
+                                <li onclick="onFontSelect('Arial')">Arial</li>
+                                <li onclick="onFontSelect('David')">David</li>
+                                <li onclick="onFontSelect('Verdana')">Verdana</li>
+                                <li onclick="onFontSelect('Impact')">Impact (Default)</li>
                             </ul>
                         </span>
                        

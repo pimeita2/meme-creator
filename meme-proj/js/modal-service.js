@@ -47,26 +47,157 @@ function drawImgOnCanvasByRatio(canvas, imageObj) {
     // gMeme.imgStartY = yStart;
     // gMeme.imgEndX = renderableWidth;
     // gMeme.imgEndY = renderableHeight;
+    // (imgHeight > imgWidth) ? ratio = imgHeight / imgWidth : ratio = imgWidth / imgHeight;
+    // if (canvas.height > elCanvasContainer.clientHeight) canvas.height = elCanvasContainer.clientHeight;
+
+    // console.log(ratio);
+
     var elCanvasContainer = document.querySelector('.modalImg');
-    var ratio;
     var imgHeight = imageObj.naturalHeight;
     var imgWidth = imageObj.naturalWidth;
 
-    (imgHeight > imgWidth) ? ratio = imgHeight / imgWidth : ratio = imgWidth / imgHeight;
+    var ratio;
+    ratio = canvas.width / imgWidth;
+    
+    canvas.width = elCanvasContainer.clientWidth - 10;
+    canvas.height = imgHeight * ratio;
 
-    canvas.width = elCanvasContainer.clientWidth;
-    canvas.height = imageObj.naturalHeight;
 
-    gCtx.drawImage(imageObj, 0, 0, canvas.width, imageObj.naturalHeight * ratio);
+    gCtx.drawImage(imageObj, 0, 0, canvas.width, imgHeight * ratio);
 };
 
 function createMeme() {
     return {
-        selectedImgId: 5,
+        // selectedImgId: 5,
+        selectedLine: 0,
         lines: [
             {
                 str: '',
-                font: 'Arial',
+                font: 'Impact',
+                size: 30,
+                align: 'center',
+                color: '#ff0000',
+                // x:0,
+                // y:60,
+                shadow: false,
+            },
+            {
+                str: '',
+                font: 'Impact',
+                size: 30,
+                align: 'center',
+                color: '#ff0000',
+                // x:0,
+                // y:120,
+                shadow: false,
+            },
+            {
+                str: '',
+                font: 'Impact',
+                size: 30,
+                align: 'center',
+                color: '#ff0000',
+                shadow: false,
+            },
+            {
+                str: '',
+                font: 'Impact',
+                size: 30,
+                align: 'center',
+                color: '#ff0000',
+                shadow: false,
+            },
+            {
+                str: '',
+                font: 'Impact',
+                size: 30,
+                align: 'center',
+                color: '#ff0000',
+                shadow: false,
+            },
+            {
+                str: '',
+                font: 'Impact',
+                size: 30,
+                align: 'center',
+                color: '#ff0000',
+                shadow: false,
+            },
+            {
+                str: '',
+                font: 'Impact',
+                size: 30,
+                align: 'center',
+                color: '#ff0000',
+                shadow: false,
+            },
+            {
+                str: '',
+                font: 'Impact',
+                size: 30,
+                align: 'center',
+                color: '#ff0000',
+                shadow: false,
+            },
+            {
+                str: '',
+                font: 'Impact',
+                size: 30,
+                align: 'center',
+                color: '#ff0000',
+                shadow: false,
+            },
+            {
+                str: '',
+                font: 'Impact',
+                size: 30,
+                align: 'center',
+                color: '#ff0000',
+                shadow: false,
+            },
+            {
+                str: '',
+                font: 'Impact',
+                size: 30,
+                align: 'center',
+                color: '#ff0000',
+                shadow: false,
+            },
+            {
+                str: '',
+                font: 'Impact',
+                size: 30,
+                align: 'center',
+                color: '#ff0000',
+                shadow: false,
+            },
+            {
+                str: '',
+                font: 'Impact',
+                size: 30,
+                align: 'center',
+                color: '#ff0000',
+                shadow: false,
+            },
+            {
+                str: '',
+                font: 'Impact',
+                size: 30,
+                align: 'center',
+                color: '#ff0000',
+                shadow: false,
+            },
+            {
+                str: '',
+                font: 'Impact',
+                size: 30,
+                align: 'center',
+                color: '#ff0000',
+                shadow: false,
+            },
+            {
+                str: '',
+                font: 'Impact',
                 size: 30,
                 align: 'center',
                 color: '#ff0000',
@@ -77,23 +208,23 @@ function createMeme() {
 }
 
 function writeText(str) {
-    gMeme.lines[0].str = str;
+    gMeme.lines[gMeme.selectedLine].str = str;
 }
 
 function changeColor(color) {
-    gMeme.lines[0].color = color;
+    gMeme.lines[gMeme.selectedLine].color = color;
 }
 
 function changeFont(font) {
-    gMeme.lines[0].font = font;
+    gMeme.lines[gMeme.selectedLine].font = font;
 }
 
 function changeFontSize(sym) {
-    (sym === '+') ? gMeme.lines[0].size++ : gMeme.lines[0].size--;
+    (sym === '+') ? gMeme.lines[gMeme.selectedLine].size++ : gMeme.lines[gMeme.selectedLine].size--;
 }
 
 function alignText(val) {
-    gMeme.lines[0].align = val;
+    gMeme.lines[gMeme.selectedLine].align = val;
     renderMeme();
 }
 
@@ -112,6 +243,6 @@ function deleteTextShadow() {
 }
 
 function toggleShadow() {
-    gMeme.lines[0].shadow = !gMeme.lines[0].shadow;
+    gMeme.lines[gMeme.selectedLine].shadow = !gMeme.lines[gMeme.selectedLine].shadow;
     renderMeme()
 }
