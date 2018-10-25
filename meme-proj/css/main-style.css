@@ -12,11 +12,8 @@
 /* reset default settings */
 * {
     box-sizing: border-box;
-    /* background-size: contain;
-    background-position: center; */
 }
 html {
-    background-image: linear-gradient(white, rgb(206, 201, 201), white);
     font-size: 12px;
 }
 
@@ -25,6 +22,8 @@ body, html {
 }
 
 body {
+    background-color: white;
+    /* background-position:  */
     overflow-x: hidden;
 }
 
