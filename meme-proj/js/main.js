@@ -1,5 +1,7 @@
 'use strict';
 
+const LINE_HEIGHT = 60;
+
 
 function init() {
     // console.log('controler on');
@@ -20,17 +22,39 @@ function renderGallery() {
     }).join('');
     document.querySelector('.content-container').innerHTML = strHTML
 }
-function canvasClicked(ev){
-    gMeme.selectedLine=Math.floor(ev.layerY/60); // todo 60 const
-    addNewLineToMeme(createLine())
-    //@toto - 
-    //1. replace the selected line above with function to loop over all line element and find closet
-    //    let's start with moving only y and finding the closesed y than we will loop over the results and find the closesed x
-    //2. save the x and y on the line selected - this needs to be done in the method which will 
-    //    allow to drag the line (on move mouse as example)
-        //gMeme.lines[gMeme.selectedLine].x=ev.layerX
-        //gMeme.lines[gMeme.selectedLine].y=ev.layerY
-    document.querySelector('.text-line').value=gMeme.lines[gMeme.selectedLine].str;
+function canvasClicked(ev) {
+    var clickY = ev.layerY;
+    var clickX = ev.layerX;
+    console.log(clickY, clickX);
+
+    var memeLines = gMeme.lines;
+    var clickedLineIdx = memeLines.findIndex((memeLine) => {
+        // debugger;
+        return (
+            clickX >= memeLine.xStart && 
+            clickX <= memeLine.xEnd &&
+            clickY <= memeLine.yStart &&
+            clickY >= memeLine.yEnd
+        )
+    })
+    console.log(clickedLineIdx);
+
+    var elTextInput = document.querySelector('.text-line');
+    elTextInput.value = gMeme.lines[clickedLineIdx].str;
+
+    // addNewLineToMeme(createLine()); // put this in a different function that is called by an add button
+    // // gMeme.selectedLine++
+    // gMeme.lines[gMeme.selectedLine].yStart = ev.layerY;
+    // gMeme.lines[gMeme.selectedLine].yEnd = ev.layerY - gMeme.lines[gMeme.selectedLine].size;
+
+    // updateMarkedLine(gMeme.selectedLine);
+    // for (var i = 0; i < gMeme.lines.length; i++) {
+    //     // gMeme.lines[gMeme.selectedLine].yStart = ev.layerY;
+
+    // }
+
+    // document.querySelector('.text-line').value = gMeme.lines[currLineIdx].str;
+    // console.log(gMeme.lines[gMeme.selectedLine])
 }
 
 function onImgClick(elImg) {
@@ -117,14 +141,15 @@ function onChangeFontSize(sym) {
 function renderMeme() {
     renderCanvas();
     drawImgOnCanvasByRatio(gCanvas, gMeme.imgElement);
-    for(var i=0;i<gMeme.lines.length;i++){
+    for (var i = 0; i < gMeme.lines.length; i++) {
+        updateMarkedLine();
+        // addFrameToMarkedLine();
         var txt = gMeme.lines[i];
         gCtx.fillStyle = txt.color;
         gCtx.font = `${txt.size}px ${txt.font}`;
-        (txt.shadow)? createTextShadow() : deleteTextShadow();
+        (txt.shadow) ? createTextShadow() : deleteTextShadow();
         gCtx.textAlign = txt.align;
-        var elCanvasContainerWidth = document.querySelector('.modalImg').clientWidth;
-        gCtx.fillText(txt.str, elCanvasContainerWidth / 2, (i+1)*60);
+        gCtx.fillText(txt.str, gCanvas.width / 2, txt.yStart);
     }
 }
 
@@ -139,3 +164,17 @@ function clearValue(elInput) {
     elInput.value = '';
 }
 
+function addFrameToMarkedLine() {
+    console.log('marked');
+    var yStart = gMeme.selectedLine * LINE_HEIGHT + 5;
+    var yEnd = gMeme.selectedLine + 1 * LINE_HEIGHT + 5;
+
+    gCtx.rect(10, yStart, gCanvas.width - 20, yEnd);
+    gCtx.strokeStyle = '#ffffff';
+    gCtx.stroke();
+}
+
+function onAddLineClick() {
+    var newLine = createLine();
+    addNewLineToMeme(newLine);
+}

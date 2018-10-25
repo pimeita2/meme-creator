@@ -15,7 +15,7 @@
     background-position: center; */
 }
 html {
-    max-width: 95%;
+    max-width: 94%;
     background-image: linear-gradient(white, rgb(206, 201, 201), white);
     font-size: 12px;
 }
@@ -26,6 +26,7 @@ body, html {
 
 body {
     width: 96%;
+    overflow-x: hidden;
 }
 
 img {

@@ -5,6 +5,7 @@ var gCtx;
 var gMeme = createMeme();
 
 
+
 function renderCanvas() {
 }
 
@@ -28,7 +29,7 @@ function drawImgOnCanvasByRatio(canvas, imageObj) {
 function addNewLineToMeme(line){
     gMeme.lines.push(line);
 }
-function createLine(){
+function createLine(yStart = 30){
     return {
         str: '',
         font: 'Impact',
@@ -36,8 +37,10 @@ function createLine(){
         align: 'center',
         color: '#ffffff',
         isMarked: false,
-        // x:0,
-        // y:60,
+        yStart: yStart,
+        yEnd: 0,
+        xStart: 0,
+        xEnd: document.querySelector('.modalImg').clientWidth - 10,
         shadow: false,
     }
 }
@@ -91,5 +94,15 @@ function toggleShadow() {
     renderMeme()
 }
 
+<<<<<<< HEAD
 gMeme.lines[gMeme.selectedLine].isMarked = true;
 
+=======
+function updateMarkedLine(lineIdx = 0) {
+    for (var i = 0; i < gMeme.lines.length; i++) {
+        gMeme.lines[i].isMarked = !gMeme.lines[i].isMarked;
+    }
+    gMeme.lines[lineIdx].isMarked = true;
+//    console.log(lineIdx);
+}
+>>>>>>> cc50591835bd72e8255a25839a26878704a86b92

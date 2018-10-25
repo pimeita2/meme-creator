@@ -17,7 +17,7 @@
         <h2>Get your face on a meme!</h2>
 
         <nav class="main-nav">
-            <span>Search by Keyword: </span>
+            <span>Search: </span>
             <input list="filters" name="filters" oninput="onSetFilter(this.value)" value="all" onclick="clearValue(this)">
             <datalist id="filters">
                 <option value="all" data-trans="filter-all">all</option>
@@ -52,6 +52,7 @@
                 <div class="text-container flex justify-center wrap align-center">
 
                     <input class="text-line" placeholder="Enter text here" type="text" oninput="onWriteText(this.value)">
+                    <button onclick="onAddLineClick()">Add Line</button>
 
                     <div class="textToolbar flex justify-center align-center">
                         <button onclick="deleteText()" class="delete"><i class="far fa-trash-alt"></i></button>
