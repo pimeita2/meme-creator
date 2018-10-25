@@ -94,6 +94,10 @@ function toggleShadow() {
     renderMeme()
 }
 
+<<<<<<< HEAD
+gMeme.lines[gMeme.selectedLine].isMarked = true;
+
+=======
 function updateMarkedLine(lineIdx = 0) {
     for (var i = 0; i < gMeme.lines.length; i++) {
         gMeme.lines[i].isMarked = !gMeme.lines[i].isMarked;
@@ -101,3 +105,4 @@ function updateMarkedLine(lineIdx = 0) {
     gMeme.lines[lineIdx].isMarked = true;
 //    console.log(lineIdx);
 }
+>>>>>>> cc50591835bd72e8255a25839a26878704a86b92
