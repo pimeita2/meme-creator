@@ -1,11 +1,4 @@
 
-
-.item {
-    margin: 5px;
-    min-height: 50px;
-    min-width: 50px;
-}
-
 .item img {
     transition: all .3s;
     min-width: 100%;
