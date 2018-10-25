@@ -9,7 +9,6 @@ function init() {
 
 function renderGallery() {
     var imgs = getImgs();
-    // console.log(imgs);
     var strHTML = '';
 
     strHTML = imgs.map((img, idx) => {
@@ -22,7 +21,8 @@ function renderGallery() {
     document.querySelector('.content-container').innerHTML = strHTML
 }
 function canvasClicked(ev){
-    gMeme.selectedLine=Math.floor(ev.layerY/60);
+    gMeme.selectedLine=Math.floor(ev.layerY/60); // todo 60 const
+    addNewLineToMeme(createLine())
     //@toto - 
     //1. replace the selected line above with function to loop over all line element and find closet
     //    let's start with moving only y and finding the closesed y than we will loop over the results and find the closesed x

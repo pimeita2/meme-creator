@@ -25,148 +25,27 @@ function drawImgOnCanvasByRatio(canvas, imageObj) {
     gCtx.drawImage(imageObj, 0, 0, canvas.width, imgHeight * ratio);
 };
 
-
-function addMeme(meme) {
-    gMeme.push(meme);
+function addNewLineToMeme(line){
+    gMeme.lines.push(line);
+}
+function createLine(){
+    return {
+        str: '',
+        font: 'Impact',
+        size: 30,
+        align: 'center',
+        color: '#ff0000',
+        // x:0,
+        // y:60,
+        shadow: false,
+    }
 }
 
 function createMeme() {
     return {
-        // selectedImgId: 5,
         selectedLine: 0,
         lines: [
-            {
-                str: '',
-                font: 'Impact',
-                size: 30,
-                align: 'center',
-                color: '#ff0000',
-                // x:0,
-                // y:60,
-                shadow: false,
-            },
-            {
-                str: '',
-                font: 'Impact',
-                size: 30,
-                align: 'center',
-                color: '#ff0000',
-                // x:0,
-                // y:120,
-                shadow: false,
-            },
-            {
-                str: '',
-                font: 'Impact',
-                size: 30,
-                align: 'center',
-                color: '#ff0000',
-                shadow: false,
-            },
-            {
-                str: '',
-                font: 'Impact',
-                size: 30,
-                align: 'center',
-                color: '#ff0000',
-                shadow: false,
-            },
-            {
-                str: '',
-                font: 'Impact',
-                size: 30,
-                align: 'center',
-                color: '#ff0000',
-                shadow: false,
-            },
-            {
-                str: '',
-                font: 'Impact',
-                size: 30,
-                align: 'center',
-                color: '#ff0000',
-                shadow: false,
-            },
-            {
-                str: '',
-                font: 'Impact',
-                size: 30,
-                align: 'center',
-                color: '#ff0000',
-                shadow: false,
-            },
-            {
-                str: '',
-                font: 'Impact',
-                size: 30,
-                align: 'center',
-                color: '#ff0000',
-                shadow: false,
-            },
-            {
-                str: '',
-                font: 'Impact',
-                size: 30,
-                align: 'center',
-                color: '#ff0000',
-                shadow: false,
-            },
-            {
-                str: '',
-                font: 'Impact',
-                size: 30,
-                align: 'center',
-                color: '#ff0000',
-                shadow: false,
-            },
-            {
-                str: '',
-                font: 'Impact',
-                size: 30,
-                align: 'center',
-                color: '#ff0000',
-                shadow: false,
-            },
-            {
-                str: '',
-                font: 'Impact',
-                size: 30,
-                align: 'center',
-                color: '#ff0000',
-                shadow: false,
-            },
-            {
-                str: '',
-                font: 'Impact',
-                size: 30,
-                align: 'center',
-                color: '#ff0000',
-                shadow: false,
-            },
-            {
-                str: '',
-                font: 'Impact',
-                size: 30,
-                align: 'center',
-                color: '#ff0000',
-                shadow: false,
-            },
-            {
-                str: '',
-                font: 'Impact',
-                size: 30,
-                align: 'center',
-                color: '#ff0000',
-                shadow: false,
-            },
-            {
-                str: '',
-                font: 'Impact',
-                size: 30,
-                align: 'center',
-                color: '#ff0000',
-                shadow: false,
-            }
+            createLine(),
         ]
     }
 }
