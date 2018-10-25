@@ -4,7 +4,9 @@ var gCanvas;
 var gCtx;
 var gMeme = createMeme();
 
-
+function getMemeState() {
+    return gMeme;
+}
 
 function renderCanvas() {
 }
@@ -18,7 +20,7 @@ function drawImgOnCanvasByRatio(canvas, imageObj) {
 
     var ratio;
     ratio = canvas.width / imgWidth;
-    
+
     canvas.width = elCanvasContainer.clientWidth - 10;
     canvas.height = imgHeight * ratio;
 
@@ -26,11 +28,25 @@ function drawImgOnCanvasByRatio(canvas, imageObj) {
     gCtx.drawImage(imageObj, 0, 0, canvas.width, imgHeight * ratio);
 };
 
-function addNewLineToMeme(line){
-    gMeme.lines.push(line);
+
+function getCurrLineByClick(clickX, clickY) {
+    return gMeme.lines.find((line, idx) => {
+        var isCurrLine = clickX >= line.xStart &&
+            clickX <= line.xEnd &&
+            clickY <= line.yStart &&
+            clickY >= line.yEnd;
+        if (isCurrLine) gMeme.selectedLine = idx;
+        return isCurrLine;
+    })
 }
-function createLine(yStart = 30, yEnd = 0){
-    return {
+
+function addNewLineToMeme() {
+    createLine();
+}
+
+function createLine(yStart = 30, yEnd = 0) {
+    gMeme.selectedLine++
+    gMeme.lines.push({
         str: '',
         font: 'Impact',
         size: 30,
@@ -42,15 +58,26 @@ function createLine(yStart = 30, yEnd = 0){
         xStart: 0,
         xEnd: document.querySelector('.modalImg').clientWidth - 10,
         shadow: false,
-    }
+    })
+    console.log(gMeme.lines[gMeme.lines.length-1])
 }
 
 function createMeme() {
     return {
         selectedLine: 0,
-        lines: [
-            createLine(),
-        ]
+        lines: [{
+            str: '',
+            font: 'Impact',
+            size: 30,
+            align: 'center',
+            color: '#ffffff',
+            isMarked: false,
+            yStart: 30,
+            yEnd: 0,
+            xStart: 0,
+            xEnd: document.querySelector('.modalImg').clientWidth - 10,
+            shadow: false,
+        }]
     }
 }
 
@@ -94,15 +121,14 @@ function toggleShadow() {
     renderMeme()
 }
 
-<<<<<<< HEAD
-gMeme.lines[gMeme.selectedLine].isMarked = true;
-
-=======
 function updateMarkedLine(lineIdx = 0) {
     for (var i = 0; i < gMeme.lines.length; i++) {
         gMeme.lines[i].isMarked = !gMeme.lines[i].isMarked;
     }
     gMeme.lines[lineIdx].isMarked = true;
-//    console.log(lineIdx);
+    //    console.log(lineIdx);
 }
->>>>>>> cc50591835bd72e8255a25839a26878704a86b92
+
+function getSelectedLine() {
+    return gMeme.selectedLine;
+}

@@ -22,38 +22,21 @@ function renderGallery() {
     }).join('');
     document.querySelector('.content-container').innerHTML = strHTML
 }
+
 function canvasClicked(ev) {
     var clickY = ev.layerY;
     var clickX = ev.layerX;
-
-    var memeLines = gMeme.lines;
-    gMeme.selectedLine = memeLines.findIndex((memeLine) => {
-        return (
-            clickX >= memeLine.xStart &&
-            clickX <= memeLine.xEnd &&
-            clickY <= memeLine.yStart &&
-            clickY >= memeLine.yEnd
-        )
-    })
+    
     var elTextInput = document.querySelector('.text-line');
-    if (gMeme.selectedLine >= 0) {
-        elTextInput.value = gMeme.lines[gMeme.selectedLine].str;
+    var elColor = document.querySelector('#input-color');
+    var currLine = getCurrLineByClick(clickX, clickY)
+    if (currLine) {
+        elTextInput.value = currLine.str;
+        elColor.value = currLine.color;
     } else {
-        gMeme.selectedLine++;
-        addNewLineToMeme(createLine(ev.layerY, ev.layerY - gMeme.lines[gMeme.selectedLine].size));
-        gMeme.lines[gMeme.selectedLine].yStart = ev.layerY;
-        gMeme.lines[gMeme.selectedLine].yEnd = ev.layerY - gMeme.lines[gMeme.selectedLine].size;
-        elTextInput.value = gMeme.lines[gMeme.selectedLine].str;
+        createLine(clickY, clickY - 30);
+        elTextInput.value = '';
     }
-
-
-    // updateMarkedLine(gMeme.selectedLine);
-    // for (var i = 0; i < gMeme.lines.length; i++) {
-    //     // gMeme.lines[gMeme.selectedLine].yStart = ev.layerY;
-
-    // }
-
-    // console.log(gMeme.lines[gMeme.selectedLine])
 }
 
 function onImgClick(elImg) {
@@ -174,10 +157,5 @@ function addFrameToMarkedLine() {
 }
 
 function onAddLineClick() {
-    var newLine = createLine();
-    addNewLineToMeme(newLine);
-}
-
-function renderNewLine() {
-
+    createLine();
 }
