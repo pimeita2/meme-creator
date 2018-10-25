@@ -47,7 +47,6 @@ function getImgById() {
 function getImgs() {
     createImgs();
     return gImgs.filter(function (img) {
-        // console.log(gImgsFilter, 'img:', img, 'img key:', img.keyWords)
         return gImgsFilter === 'all' ||
             (gImgsFilter === 'happy' && img.keyWords.includes('happy')) ||
             (gImgsFilter === 'crazy' && img.keyWords.includes('crazy')) ||
@@ -55,10 +54,7 @@ function getImgs() {
             (gImgsFilter === 'sad' && img.keyWords.includes('sad')) ||
             (gImgsFilter === 'animals' && img.keyWords.includes('animals'))
     })
-    // var imgs = getFromStorage(KEY_IMGS);
-    // if (!imgs) imgs = gImgs;
 }
-
 
 function setFilter(statusFilter) {
     gImgsFilter = statusFilter;

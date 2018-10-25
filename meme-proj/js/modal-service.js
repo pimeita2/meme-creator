@@ -39,7 +39,8 @@ function adjustImgToCanvasRatio(canvas, elImg) {
 
 function getCurrLineByClick(clickX, clickY) {
     return gMeme.lines.find((line, idx) => {
-        var isCurrLine = clickX >= line.xStart &&
+        var isCurrLine =
+            clickX >= line.xStart &&
             clickX <= line.xEnd &&
             clickY <= line.yStart &&
             clickY >= line.yEnd;

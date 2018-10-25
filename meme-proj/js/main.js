@@ -45,7 +45,6 @@ function onImgClick(elImg) {
     createCanvas();
     drawImg(elImg);
     renderMeme();
-    // renderCanvas(); // make the render canvas another function that cleans the canvas
     resetModalTxtInput();
 }
 
@@ -61,6 +60,7 @@ function changeCurrentFilterDisplay(elFilter) {
     }
     elFilter.classList.add('current-filter');
 }
+
 function onFontBtnClick() {
     document.querySelector('.font-list').classList.toggle('open');
 }
@@ -117,7 +117,6 @@ function onChangeFontSize(sym) {
 }
 
 function renderMeme() {
-    // renderCanvas();
     drawImgOnCanvas(gMeme.imgElement);
     for (var i = 0; i < gMeme.lines.length; i++) {
         updateMarkedLine();
@@ -130,9 +129,12 @@ function renderMeme() {
     }
 }
 
-function deleteText() {
-    getCurrLineByClick(clickX, clickY)
+function deleteText(currLine) {
+    var currLine = gMeme.selectedLine;
+    console.log(currLine)
+    gMeme.lines[currLine].str = '';
     resetModalTxtInput();
+    renderMeme();
 }
 
 function addFrameToMarkedLine() {
