@@ -28,24 +28,28 @@ function canvasClicked(ev) {
     console.log(clickY, clickX);
 
     var memeLines = gMeme.lines;
-    var clickedLineIdx = memeLines.findIndex((memeLine) => {
+    gMeme.selectedLine = memeLines.findIndex((memeLine) => {
         // debugger;
         return (
-            clickX >= memeLine.xStart && 
+            clickX >= memeLine.xStart &&
             clickX <= memeLine.xEnd &&
             clickY <= memeLine.yStart &&
             clickY >= memeLine.yEnd
         )
     })
-    console.log(clickedLineIdx);
-
     var elTextInput = document.querySelector('.text-line');
-    elTextInput.value = gMeme.lines[clickedLineIdx].str;
+    if (gMeme.selectedLine >= 0) {
+        elTextInput.value = gMeme.lines[gMeme.selectedLine].str;
+    } else {
+        gMeme.selectedLine++;
+        addNewLineToMeme(createLine(60, 30)); // put this in a different function that is called by an add button
+        // resetModalTxtInput();
+        // gMeme.selectedLine++
+        gMeme.lines[gMeme.selectedLine].yStart = ev.layerY;
+        gMeme.lines[gMeme.selectedLine].yEnd = ev.layerY - gMeme.lines[gMeme.selectedLine].size;
+        elTextInput.value = gMeme.lines[gMeme.selectedLine].str;
+    }
 
-    // addNewLineToMeme(createLine()); // put this in a different function that is called by an add button
-    // // gMeme.selectedLine++
-    // gMeme.lines[gMeme.selectedLine].yStart = ev.layerY;
-    // gMeme.lines[gMeme.selectedLine].yEnd = ev.layerY - gMeme.lines[gMeme.selectedLine].size;
 
     // updateMarkedLine(gMeme.selectedLine);
     // for (var i = 0; i < gMeme.lines.length; i++) {
@@ -53,7 +57,6 @@ function canvasClicked(ev) {
 
     // }
 
-    // document.querySelector('.text-line').value = gMeme.lines[currLineIdx].str;
     // console.log(gMeme.lines[gMeme.selectedLine])
 }
 
@@ -177,4 +180,8 @@ function addFrameToMarkedLine() {
 function onAddLineClick() {
     var newLine = createLine();
     addNewLineToMeme(newLine);
+}
+
+function renderNewLine() {
+
 }
