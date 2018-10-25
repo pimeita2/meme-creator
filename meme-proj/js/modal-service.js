@@ -5,6 +5,7 @@ var gCtx;
 var gMeme = createMeme();
 
 
+
 function renderCanvas() {
 }
 
@@ -34,9 +35,12 @@ function createLine(){
         font: 'Impact',
         size: 30,
         align: 'center',
-        color: '#ff0000',
-        // x:0,
-        // y:60,
+        color: '#ffffff',
+        isMarked: false,
+        yStart: 30,
+        yEnd: 0,
+        xStart: 0,
+        xEnd: document.querySelector('.modalImg').clientWidth - 10,
         shadow: false,
     }
 }
@@ -88,4 +92,12 @@ function deleteTextShadow() {
 function toggleShadow() {
     gMeme.lines[gMeme.selectedLine].shadow = !gMeme.lines[gMeme.selectedLine].shadow;
     renderMeme()
+}
+
+function updateMarkedLine(lineIdx = 0) {
+    for (var i = 0; i < gMeme.lines.length; i++) {
+        gMeme.lines[i].isMarked = !gMeme.lines[i].isMarked;
+    }
+    gMeme.lines[lineIdx].isMarked = true;
+//    console.log(lineIdx);
 }
