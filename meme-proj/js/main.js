@@ -25,11 +25,9 @@ function renderGallery() {
 function canvasClicked(ev) {
     var clickY = ev.layerY;
     var clickX = ev.layerX;
-    console.log(clickY, clickX);
 
     var memeLines = gMeme.lines;
     gMeme.selectedLine = memeLines.findIndex((memeLine) => {
-        // debugger;
         return (
             clickX >= memeLine.xStart &&
             clickX <= memeLine.xEnd &&
@@ -42,9 +40,7 @@ function canvasClicked(ev) {
         elTextInput.value = gMeme.lines[gMeme.selectedLine].str;
     } else {
         gMeme.selectedLine++;
-        addNewLineToMeme(createLine(60, 30)); // put this in a different function that is called by an add button
-        // resetModalTxtInput();
-        // gMeme.selectedLine++
+        addNewLineToMeme(createLine(ev.layerY, ev.layerY - gMeme.lines[gMeme.selectedLine].size));
         gMeme.lines[gMeme.selectedLine].yStart = ev.layerY;
         gMeme.lines[gMeme.selectedLine].yEnd = ev.layerY - gMeme.lines[gMeme.selectedLine].size;
         elTextInput.value = gMeme.lines[gMeme.selectedLine].str;
