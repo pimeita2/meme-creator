@@ -29,7 +29,7 @@ function drawImgOnCanvasByRatio(canvas, imageObj) {
 function addNewLineToMeme(line){
     gMeme.lines.push(line);
 }
-function createLine(){
+function createLine(yStart = 30){
     return {
         str: '',
         font: 'Impact',
@@ -37,7 +37,7 @@ function createLine(){
         align: 'center',
         color: '#ffffff',
         isMarked: false,
-        yStart: 30,
+        yStart: yStart,
         yEnd: 0,
         xStart: 0,
         xEnd: document.querySelector('.modalImg').clientWidth - 10,

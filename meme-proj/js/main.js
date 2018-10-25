@@ -41,6 +41,7 @@ function canvasClicked(ev) {
 
     var elTextInput = document.querySelector('.text-line');
     elTextInput.value = gMeme.lines[clickedLineIdx].str;
+
     // addNewLineToMeme(createLine()); // put this in a different function that is called by an add button
     // // gMeme.selectedLine++
     // gMeme.lines[gMeme.selectedLine].yStart = ev.layerY;
