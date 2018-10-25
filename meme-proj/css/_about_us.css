@@ -20,7 +20,7 @@
 .close-about-btn {
     position: absolute;
     top: 20px;
-    left: 44.5%;
+    left: 5vw;
     background-color: white;
     border: 1px solid black;
     width: 70px;
@@ -62,7 +62,7 @@
 
 .about-us-img img {
     overflow-x: hidden;
-    min-height: 276px;
+    min-height: 200px;
 }
 
 .about-us p {
@@ -70,6 +70,7 @@
     grid-column: 1;
     color: black;
     -webkit-text-stroke-color: transparent;
+    font-size: 0.7rem;
 }
 
 .about-us .title {
