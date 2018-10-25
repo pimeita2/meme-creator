@@ -1,4 +1,4 @@
-'use strict';
+    'use strict';
 
 const LINE_HEIGHT = 60;
 
@@ -41,13 +41,13 @@ function canvasClicked(ev) {
 
 function onImgClick(elImg) {
     // console.log(elImg);
+    openModal();
     updateCurrImg(elImg);
     createCanvas();
     drawImg(elImg);
     renderMeme();
-    renderCanvas(); // make the render canvas another function that cleans the canvas
+    // renderCanvas(); // make the render canvas another function that cleans the canvas
     resetModalTxtInput();
-    openModal();
 }
 
 function onSetFilter(statusFilter) {
@@ -96,8 +96,8 @@ function modalContentClicked(ev) {
 }
 
 function drawImg(elImg) {
-    // createCanvas(); // create canvas should be called once to reset the canvas settings onload
-    drawImgOnCanvasByRatio(gCanvas, elImg);
+    adjustImgToCanvasRatio(gCanvas, elImg);
+    drawImgOnCanvas(gCanvas, elImg);
 }
 
 function onWriteText(str) {
@@ -121,8 +121,8 @@ function onChangeFontSize(sym) {
 }
 
 function renderMeme() {
-    renderCanvas();
-    drawImgOnCanvasByRatio(gCanvas, gMeme.imgElement);
+    // renderCanvas();
+    drawImgOnCanvas(gMeme.imgElement);
     for (var i = 0; i < gMeme.lines.length; i++) {
         updateMarkedLine();
         // addFrameToMarkedLine();

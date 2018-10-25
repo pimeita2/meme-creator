@@ -1,4 +1,6 @@
-
+.content-container {
+    min-height: 100%;
+}
 .item img {
     transition: all .3s;
     min-width: 100%;

@@ -10,6 +10,7 @@
     transform: rotate(-60deg) skewY(30deg);
     overflow: hidden;
     visibility: hidden;
+    margin: 0 1%;
 }
 
 .item img {

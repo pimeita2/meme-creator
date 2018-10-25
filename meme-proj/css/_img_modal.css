@@ -23,7 +23,7 @@
 .modalContent {
     height: 80%;
     margin-bottom: 20px;
-    min-width: 80vw;
+    width: 100%;
     min-height: 80vh;
     background-color: rgb(209, 199, 199);
     cursor: auto;
@@ -70,13 +70,14 @@
 }
 
 .modalImg {
-    width: 100%;
     margin-top: 10px;
+    width: 100%;
     max-height: 70%;
 }
 
 canvas {
-    margin: 5px;
+    display: block;
+    margin: auto;
 }
 
 .text-container {

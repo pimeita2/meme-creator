@@ -8,24 +8,33 @@ function getMemeState() {
     return gMeme;
 }
 
-function renderCanvas() {
+function drawImgOnCanvas(img) {
+    gCtx.drawImage(img, 0, 0, gCanvas.width, gCanvas.height);
 }
 
 
-function drawImgOnCanvasByRatio(canvas, imageObj) {
+function adjustImgToCanvasRatio(canvas, elImg) {
 
     var elCanvasContainer = document.querySelector('.modalImg');
-    var imgHeight = imageObj.naturalHeight;
-    var imgWidth = imageObj.naturalWidth;
+    // debugger
 
-    var ratio;
-    ratio = canvas.width / imgWidth;
+    var imgHeight = elImg.naturalHeight;
+    var imgWidth = elImg.naturalWidth;
 
-    canvas.width = elCanvasContainer.clientWidth - 10;
-    canvas.height = imgHeight * ratio;
+    var ratioForFitByCanvasWidth = imgHeight / imgWidth;
+    var ratioForLargerCanvasHeight = imgWidth / imgHeight;
 
+    // if (imgHeight < imgWidth) {
+    //     canvas.width = elCanvasContainer.clientWidth - 10;
+    //     canvas.height = canvas.width * ratioForFitByCanvasWidth;
+    //     console.log('by canvas width')
+    // } else {
+    // }
+        canvas.height = elCanvasContainer.clientHeight;
+        canvas.width = canvas.height * ratioForLargerCanvasHeight;
+        // console.log('by canvas height')
 
-    gCtx.drawImage(imageObj, 0, 0, canvas.width, imgHeight * ratio);
+    // drawImgOnCanvas(imageObj);
 };
 
 
@@ -59,7 +68,7 @@ function createLine(yStart = 30, yEnd = 0) {
         xEnd: document.querySelector('.modalImg').clientWidth - 10,
         shadow: false,
     })
-    console.log(gMeme.lines[gMeme.lines.length-1])
+    console.log(gMeme.lines[gMeme.lines.length - 1])
 }
 
 function createMeme() {
