@@ -34,7 +34,8 @@ function createLine(){
         font: 'Impact',
         size: 30,
         align: 'center',
-        color: '#ff0000',
+        color: '#ffffff',
+        isMarked: false,
         // x:0,
         // y:60,
         shadow: false,
@@ -89,3 +90,6 @@ function toggleShadow() {
     gMeme.lines[gMeme.selectedLine].shadow = !gMeme.lines[gMeme.selectedLine].shadow;
     renderMeme()
 }
+
+gMeme.lines[gMeme.selectedLine].isMarked = true;
+
