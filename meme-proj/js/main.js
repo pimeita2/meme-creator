@@ -1,4 +1,4 @@
-    'use strict';
+'use strict';
 
 const LINE_HEIGHT = 60;
 
@@ -25,17 +25,26 @@ function renderGallery() {
 function canvasClicked(ev) {
     var clickY = ev.layerY;
     var clickX = ev.layerX;
-    
+
     var elTextInput = document.querySelector('.text-line');
     var elColor = document.querySelector('#input-color');
     var currLine = getCurrLineByClick(clickX, clickY)
+    console.log(currLine)
     if (currLine) {
         elTextInput.value = currLine.str;
         elColor.value = currLine.color;
+        // addFrameToMarkedLine(currLine);
     } else {
         createLine(clickY, clickY - 30);
         elTextInput.value = '';
     }
+}
+
+function addFrameToMarkedLine(currLine) {
+    gCtx.rect(currLine.xStart + 5, currLine.yStart, currLine.xEnd - 5, currLine.yEnd);
+    // gCtx.rect(0, 134, 445, 164);
+    gCtx.strokeStyle = '#ffffff';
+    gCtx.stroke();
 }
 
 function onImgClick(elImg) {
@@ -67,7 +76,7 @@ function onFontBtnClick() {
 
 function createCanvas() {
     var elCanvasContainer = document.querySelector('.modalImg');
-    elCanvasContainer.innerHTML = `<canvas onclick="canvasClicked(event)"> </canvas>`;
+    elCanvasContainer.innerHTML = `<canvas onclick="canvasClicked(event); focusMethod();"> </canvas>`;
     gCanvas = document.querySelector('canvas');
     gCtx = gCanvas.getContext('2d');
 }
@@ -137,15 +146,6 @@ function deleteText(currLine) {
     renderMeme();
 }
 
-function addFrameToMarkedLine() {
-    console.log('marked');
-    var yStart = gMeme.selectedLine * LINE_HEIGHT + 5;
-    var yEnd = gMeme.selectedLine + 1 * LINE_HEIGHT + 5;
-
-    gCtx.rect(10, yStart, gCanvas.width - 20, yEnd);
-    gCtx.strokeStyle = '#ffffff';
-    gCtx.stroke();
-}
 
 function onAddLineClick() {
     createLine();
@@ -157,4 +157,12 @@ function openAboutUs() {
 
 function closeAboutUs() {
     document.querySelector('.about-us').classList.remove('about-us-open');
+}
+
+
+function focusMethod() {
+    focusMethod = function getFocus() {
+        document.querySelector('.text-line').focus();
+        console.log(document.querySelector('.text-line'))
+    }
 }
