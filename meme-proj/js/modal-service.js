@@ -18,7 +18,7 @@ function adjustImgToCanvasRatio(canvas, elImg) {
 
     var ratioForFitByCanvasWidth = imgHeight / imgWidth;
     var ratioForLargerCanvasHeight = imgWidth / imgHeight;
-    
+
     canvas.height = elCanvasContainer.clientHeight;
     canvas.width = canvas.height * ratioForLargerCanvasHeight;
 };
@@ -35,12 +35,12 @@ function getCurrLineByClick(clickX, clickY) {
     })
 }
 
-function addNewLineToMeme(line){
+function addNewLineToMeme(line) {
     gMeme.lines.push(line);
 }
 
 function createLine() {
-    return{
+    return {
         str: '',
         font: 'Impact',
         size: 30,
@@ -104,11 +104,11 @@ function toggleShadow() {
     renderMeme()
 }
 
-function updateMarkedLine(lineIdx = 0) {
-    for (var i = 0; i < gMeme.lines.length; i++) {
-        gMeme.lines[i].isMarked = !gMeme.lines[i].isMarked;
+function updateMarkedLine(currLine) {
+    for (var i = 0; i < gMeme.lines.length; i++){
+        gMeme.lines[i].isMarked = false; 
     }
-    gMeme.lines[lineIdx].isMarked = true;
+    currLine.isMarked = true; 
 }
 
 function getSelectedLine() {

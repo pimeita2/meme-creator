@@ -27,9 +27,11 @@ function canvasClicked(ev) {
     var elColor = document.querySelector('#input-color');
     var currLine = getCurrLineByClick(clickX, clickY)
     if (currLine) {
+        console.log(currLine);
+        updateMarkedLine(currLine);
+        addFrameToMarkedLine(currLine);
         elTextInput.value = currLine.str;
         elColor.value = currLine.color;
-        addFrameToMarkedLine(currLine);
     } else {
         focusMethod()
         addNewLineToMeme(createLine());
@@ -136,7 +138,7 @@ function onChangeFontSize(sym) {
 function renderMeme() {
     drawImgOnCanvas(gMeme.imgElement);
     for (var i = 0; i < gMeme.lines.length; i++) {
-        updateMarkedLine();
+        // updateMarkedLine();
         var txt = gMeme.lines[i];
         gCtx.fillStyle = txt.color;
         gCtx.font = `${txt.size}px ${txt.font}`;
