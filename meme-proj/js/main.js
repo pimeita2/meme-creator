@@ -196,4 +196,17 @@ function onMouseUp(ev) {
         gCanvas.removeEventListener('mousemove', drag, false);
         gIsMoving = false;
     }
-}*/
+}
+*/
+
+function onSubmitContact() {
+    var elContactName = document.querySelector('#contact-name');
+    var elContactContent = document.querySelector('#contact-content');
+
+    if (!elContactName.value & !elContactContent.value) {
+        alert('We appreciate the will, but please insert valid content');
+    } else {
+        window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=ibarpeled@gmail.com&su=Message from ${elContactName.value}&body=${elContactContent.value}`);
+    }
+
+}
