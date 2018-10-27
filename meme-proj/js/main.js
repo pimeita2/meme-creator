@@ -1,8 +1,5 @@
 'use strict';
 
-const LINE_HEIGHT = 60;
-
-
 function init() {
     renderGallery();
     console.log(gImgs)
@@ -29,23 +26,34 @@ function canvasClicked(ev) {
     var elTextInput = document.querySelector('.text-line');
     var elColor = document.querySelector('#input-color');
     var currLine = getCurrLineByClick(clickX, clickY)
-    console.log(currLine)
     if (currLine) {
         elTextInput.value = currLine.str;
         elColor.value = currLine.color;
-        // addFrameToMarkedLine(currLine);
+        addFrameToMarkedLine(currLine);
     } else {
-        createLine(clickY, clickY - 30);
+        focusMethod()
+        addNewLineToMeme(createLine());
+        gMeme.selectedLine++
+        gMeme.lines[gMeme.selectedLine].yStart = clickY;
+        gMeme.lines[gMeme.selectedLine].yEnd = clickY - 30;
         elTextInput.value = '';
     }
 }
 
 function addFrameToMarkedLine(currLine) {
-    gCtx.rect(currLine.xStart + 5, currLine.yStart, currLine.xEnd - 5, currLine.yEnd);
-    // gCtx.rect(0, 134, 445, 164);
-    gCtx.strokeStyle = '#ffffff';
-    gCtx.stroke();
+    console.log(currLine)
+    if (currLine.isMarked) {
+        gCtx.beginPath();
+        gCtx.moveTo(currLine.xStart + 30, currLine.yEnd);
+        gCtx.lineTo(currLine.xEnd - 100, currLine.yEnd);
+        gCtx.lineTo(currLine.xEnd - 100, currLine.yStart + 10);
+        gCtx.lineTo(currLine.xStart + 30, currLine.yStart + 10);
+        gCtx.lineTo(currLine.xStart + 30, currLine.yEnd);
+        gCtx.strokeStyle = '#ff00ff';
+        gCtx.stroke();
+    }
 }
+
 
 function onImgClick(elImg) {
     // console.log(elImg);
@@ -76,7 +84,7 @@ function onFontBtnClick() {
 
 function createCanvas() {
     var elCanvasContainer = document.querySelector('.modalImg');
-    elCanvasContainer.innerHTML = `<canvas onclick="canvasClicked(event); focusMethod();"> </canvas>`;
+    elCanvasContainer.innerHTML = `<canvas onclick="canvasClicked(event);"> </canvas>`;
     gCanvas = document.querySelector('canvas');
     gCtx = gCanvas.getContext('2d');
 }
@@ -140,12 +148,10 @@ function renderMeme() {
 
 function deleteText(currLine) {
     var currLine = gMeme.selectedLine;
-    console.log(currLine)
     gMeme.lines[currLine].str = '';
     resetModalTxtInput();
     renderMeme();
 }
-
 
 function onAddLineClick() {
     createLine();
@@ -159,10 +165,35 @@ function closeAboutUs() {
     document.querySelector('.about-us').classList.remove('about-us-open');
 }
 
-
 function focusMethod() {
-    focusMethod = function getFocus() {
-        document.querySelector('.text-line').focus();
-        console.log(document.querySelector('.text-line'))
-    }
+    document.querySelector('.text-line').focus();
+    // console.log(document.querySelector('.text-line'))
 }
+
+/////////////////////////////////////////////////////////////
+
+// needs to be on canvas clicked
+/*if (line) {
+    gCanvas.addEventListener('mousemove', drag, false);
+    gIsMoving = true;
+}*/
+//
+/*function drag(ev) {
+    var mouseX = ev.clientX - gCanvas.offsetLeft;
+    var mouseY = ev.clientY - gCanvas.offsetTop;
+
+    gMeme.selectedLine.x += mouseX - gPrevPos.x;
+    gMeme.selectedLine.y += mouseY - gPrevPos.y;
+    
+    gPrevPos.x = mouseX;
+    gPrevPos.y = mouseY;
+
+    renderMeme();
+}
+
+function onMouseUp(ev) {
+    if (gIsMoving) {
+        gCanvas.removeEventListener('mousemove', drag, false);
+        gIsMoving = false;
+    }
+}*/

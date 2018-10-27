@@ -4,10 +4,6 @@ var gCanvas;
 var gCtx;
 var gMeme = createMeme();
 
-function getMemeState() {
-    return gMeme;
-}
-
 function drawImgOnCanvas(img) {
     gCtx.drawImage(img, 0, 0, gCanvas.width, gCanvas.height);
 }
@@ -16,25 +12,15 @@ function drawImgOnCanvas(img) {
 function adjustImgToCanvasRatio(canvas, elImg) {
 
     var elCanvasContainer = document.querySelector('.modalImg');
-    // debugger
 
     var imgHeight = elImg.naturalHeight;
     var imgWidth = elImg.naturalWidth;
 
     var ratioForFitByCanvasWidth = imgHeight / imgWidth;
     var ratioForLargerCanvasHeight = imgWidth / imgHeight;
-
-    // if (imgHeight < imgWidth) {
-    //     canvas.width = elCanvasContainer.clientWidth - 10;
-    //     canvas.height = canvas.width * ratioForFitByCanvasWidth;
-    //     console.log('by canvas width')
-    // } else {
-    // }
+    
     canvas.height = elCanvasContainer.clientHeight;
     canvas.width = canvas.height * ratioForLargerCanvasHeight;
-    // console.log('by canvas height')
-
-    // drawImgOnCanvas(imageObj);
 };
 
 function getCurrLineByClick(clickX, clickY) {
@@ -49,43 +35,32 @@ function getCurrLineByClick(clickX, clickY) {
     })
 }
 
-function addNewLineToMeme() {
-    createLine();
+function addNewLineToMeme(line){
+    gMeme.lines.push(line);
 }
 
-function createLine(yStart = 30, yEnd = 0) {
-    gMeme.selectedLine++
-    gMeme.lines.push({
+function createLine() {
+    return{
         str: '',
         font: 'Impact',
         size: 30,
         align: 'center',
         color: '#ffffff',
         isMarked: false,
-        yStart: yStart,
-        yEnd: yEnd,
+        yStart: 30,
+        yEnd: 0,
         xStart: 0,
         xEnd: document.querySelector('.modalImg').clientWidth - 10,
         shadow: false,
-    })
+    }
 }
 
 function createMeme() {
     return {
         selectedLine: 0,
-        lines: [{                // this is a defalt first line if not clicked
-            str: '',
-            font: 'Impact',
-            size: 30,
-            align: 'center',
-            color: '#ffffff',
-            isMarked: false,
-            yStart: 30,
-            yEnd: 0,
-            xStart: 0,
-            xEnd: document.querySelector('.modalImg').clientWidth - 10,
-            shadow: false,
-        }]
+        lines: [
+            createLine(),
+        ]
     }
 }
 
