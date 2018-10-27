@@ -7,7 +7,6 @@ function init() {
     renderGallery();
     gIsMoving = false;
     gPrevPos = {};
-    focusMethod();
     
 }
 
@@ -37,15 +36,18 @@ function canvasClicked(ev) {
     var currLine = getCurrLineByClick(clickX, clickY)
     
     if (currLine) {
-     
-        focusMethod();
+        // updateMarkedLine(currLine);
+        // addFrameToMarkedLine(currLine);
         elTextInput.value = currLine.str;
         elColor.value = currLine.color;
+        //gCanvas.addEventListener('mousedown', onMouseDown, false);
+        //gCanvas.addEventListener('mouseup', onMouseUp, false);
         
+        //gIsMoving = true;
     } else {
-        focusMethod();
+        focusMethod()
         addNewLineToMeme(createLine());
-        
+        gMeme.selectedLine++
         gMeme.lines[gMeme.selectedLine].yStart = clickY;
         gMeme.lines[gMeme.selectedLine].yEnd = clickY - 30;
         elTextInput.value = '';
@@ -57,8 +59,8 @@ function drag(ev) {
         var mouseX = ev.layerX;
         var mouseY = ev.layerY;
 
-        gMeme.lines[gMeme.selectedLine].xStart = mouseX;
-        gMeme.lines[gMeme.selectedLine].yStart = mouseY;
+        gMeme.lines[gMeme.selectedLine].xStart += mouseX - gPrevPos.x;
+        gMeme.lines[gMeme.selectedLine].yStart += mouseY - gPrevPos.y;
 
         gPrevPos.x = mouseX;
         gPrevPos.y = mouseY;
@@ -73,14 +75,14 @@ function onMouseDown(ev){
     var my = ev.layerY;
     var currLine = getCurrLineByClick(mx, my);
     if(currLine){
-        focusMethod();
         gIsMoving=true;
         gCanvas.addEventListener('mousemove', drag, false);
     }
     else{
         var elTextInput = document.querySelector('.text-line');
-        focusMethod();
+        focusMethod()
         addNewLineToMeme(createLine());
+        gMeme.selectedLine++
         gMeme.lines[gMeme.selectedLine].yStart = my;
         gMeme.lines[gMeme.selectedLine].yEnd = my - 30;
         elTextInput.value = '';
@@ -90,6 +92,8 @@ function onMouseDown(ev){
 function onMouseUp(ev) {
     if (gIsMoving) {
         gCanvas.removeEventListener('mousemove', drag, false);
+        gCanvas.removeEventListener('mousedown', drag, false);
+        gCanvas.removeEventListener('mouseup', drag, false);
         gIsMoving = false;
    }
 }
@@ -107,6 +111,7 @@ function addFrameToMarkedLine(currLine) {
 }
 
 function onImgClick(elImg) {
+    // console.log(elImg);
     openModal();
     updateCurrImg(elImg);
     createCanvas();
@@ -137,8 +142,7 @@ function createCanvas() {
     elCanvasContainer.innerHTML = `<canvas onclick="canvasClicked(event);"> </canvas>`;
     gCanvas = document.querySelector('canvas');
     gCtx = gCanvas.getContext('2d');
-    gCanvas.addEventListener('mousedown', onMouseDown, false);
-    gCanvas.addEventListener('mouseup', onMouseUp, false);
+    
 }
 
 function openModal() {

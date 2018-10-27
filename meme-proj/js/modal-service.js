@@ -37,6 +37,7 @@ function getCurrLineByClick(clickX, clickY) {
 
 function addNewLineToMeme(line) {
     gMeme.lines.push(line);
+    gMeme.selectedLine=gMeme.lines.length-1;
 }
 
 function createLine() {
